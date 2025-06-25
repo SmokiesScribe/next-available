@@ -1,0 +1,22 @@
+# Hidden files from Mac OS
+.DS_Store
+
+# phpDocumentor's local config and artifacts
+.phpdoc/*
+phpdoc.dist.xml
+
+# Vendor dirs
+/vendor/
+/unscoped-vendor/
+
+# Composer executable
+composer.phar
+
+# PHP Scoper
+scoper.inc.php
+
+# Dependency lock
+package-lock.json
+
+# Hashes
+/config/.hashes.json
