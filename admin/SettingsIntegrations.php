@@ -35,7 +35,7 @@ class SettingsIntegrations {
             'google_cal' => [
                 'title' => __( 'Google Calendar', 'next-available' ),
                 'description' => sprintf(
-                    '%1$s <a href="%2$s" target="_blank">%3$s</a>',
+                    '%1$s <a href="%2$s">%3$s</a>',
                     __( 'Integrate with Google Calendar.', 'next-available' ),
                     $redirect_url,
                     __( 'Connect to your Google Calendar.', 'next-available' )

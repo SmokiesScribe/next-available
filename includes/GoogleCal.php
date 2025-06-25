@@ -59,7 +59,7 @@ class GoogleCal {
         $action_param = 'nextav-auth=connect';
 
         // TESTING
-        $admin_url = 'https://f060-2606-83c0-7801-9b00-2d47-482f-17e4-3979.ngrok-free.app/wp-admin/';
+        $admin_url = 'https://78f4-2606-83c0-7801-9b00-2d47-482f-17e4-3979.ngrok-free.app/wp-admin/';
 
         return sprintf(
             '%1$sadmin.php?%2$s&%3$s',

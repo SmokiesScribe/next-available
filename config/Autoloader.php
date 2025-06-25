@@ -29,13 +29,14 @@ class Autoloader {
      */
     private static function autoload( $class ) { 
 
-        // Not a BuddyClients class
+        // Not a NextAv class
         if ( strpos( $class, 'NextAv' ) === false ) {
             return;
         }
 
         // Vendor class
-        if ( strpos( $class, 'NextAvVendor' ) !== false ) {
+        if ( strpos( $class, 'GriffinVendor' ) !== false ) {
+            var_dump("Vendor class!");
             return;
         }        
         

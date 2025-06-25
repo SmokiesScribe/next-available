@@ -1,0 +1,23 @@
+{
+    "name": "vgriffin/next-available",
+    "description": "Display your next available date from your Google Calendar.",
+    "type": "wordpress-plugin",
+    "require": {
+        "google/apiclient": "^2.0",
+        "fortawesome/font-awesome": "^6.6"
+    },
+    "license": "GPL-2.0-or-later",
+    "authors": [
+        {
+            "name": "Victoria Griffin",
+            "email": "victoria@victoriagriffin.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "humbug/php-scoper": "^0.18.15"
+    },
+    "config": {
+        "vendor-dir": "unscoped-vendor"
+    }
+}

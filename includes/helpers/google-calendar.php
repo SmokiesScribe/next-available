@@ -2,7 +2,7 @@
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 use NextAv\Includes\GoogleCal;
-use Google_Client;
+use GriffinVendor\Google\Client;
 
 /**
  * Redirects to the Google auth screen.
@@ -29,6 +29,11 @@ add_action( 'admin_init', 'nextav_maybe_redirect_to_google_auth' );
  */
 function nextav_handle_google_auth() {
 
+    if ( ! class_exists( Client::class ) ) {
+        var_dump( 'Class does not exist: ' . Client::class );
+        return;
+    }
+
     // Exit if no code available or wrong page
     $page = nextav_get_param( 'page' );
     $code = nextav_get_param( 'code' );
@@ -36,10 +41,11 @@ function nextav_handle_google_auth() {
 
     // Verify state param
     if ( ! wp_verify_nonce( $_GET['state'] ?? '', 'nextav_google_auth' ) ) {
-            wp_die( 'Invalid state parameter.' );
+          //  wp_die( 'Invalid state parameter.' );
+          // @TESTING bypass during development to allow ngrok to work
     }
 
-    $client = new Google_Client();
+    $client = new Client();
     $client->setClientId( 'YOUR_CLIENT_ID' );
     $client->setClientSecret( 'YOUR_CLIENT_SECRET' );
     $client->setRedirectUri( 'YOUR_REGISTERED_REDIRECT_URI' );
@@ -58,3 +64,13 @@ function nextav_handle_google_auth() {
     exit;
 }
 add_action( 'admin_init', 'nextav_handle_google_auth' );
+
+/**
+ * Loads the Google API library.
+ * 
+ * @since 1.0.0
+ */
+function nextav_load_google() {
+    // Load the Google API library
+    require_once NEXTAV_VENDOR_DIR . '/google/tcpdf/tcpdf.php';
+}
