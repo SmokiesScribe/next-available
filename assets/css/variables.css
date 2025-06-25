@@ -1,0 +1,12 @@
+/* 
+ * CSS Variables for BuddyClients Plugin
+ * 
+ * This file contains CSS variables (custom properties) used throughout the BuddyClients plugin.
+ * 
+ * Some variables are dynamically injected through the AssetManager in PHP using the `wp_add_inline_style` function.
+ * This allows values like colors to be customized through the plugin settings in WordPress.
+ * 
+ * Ensure that any updates to dynamic variables align with the PHP implementation in the AssetManager.
+ * 
+ * @since 1.0.20
+ */

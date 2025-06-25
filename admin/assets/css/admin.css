@@ -1,0 +1,392 @@
+/** Admin CSS **/
+
+/** Booking Intent Actions **/
+.nextav-admin-booking-action {
+    width: 10px;
+    display: inline-block; /* Ensures the span takes up space */
+    margin: 0 5px; /* Adjusts spacing between spans */
+}
+
+/** Admin Table Mobile CSS **/
+@media screen and (max-width: 768px) {
+
+    .nextav-admin-table-mobile-row {
+        clear:both;
+    }
+
+    .nextav-admin-table-header:not(.column-primary) {
+        display: none;
+    }
+
+    .nextav-admin-table-cell:not(.column-primary) {
+        display: none;
+    }
+
+    .nextav-expand-button-cell {
+        max-width: 50px;
+        text-align: right;
+        margin: 0 10px;
+    }
+
+    .nextav-expand-button {
+        margin: 0 10px;
+        color: black;
+        cursor: pointer;
+    }
+}
+
+/* Admin Table Desktop */
+@media screen and (min-width: 768px) {
+    .nextav-expand-button-cell,
+    .nextav-expand-button {
+        display: none;
+    }
+}
+
+
+/** BuddyClients Icon **/
+.dashicons-nextav {
+    background-image: url('../media/nextav-icon-white.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+}
+
+.dashicons-nextav-dark {
+    background-image: url('../media/nextav-icon-color.png');
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 20px;
+}
+
+/* Admin table */
+.margin-3 {margin: 0 3px !important}
+
+/* Grouped Meta Boxes */
+table.nextav-postbox-table {
+    background: #f9f9f9;
+    margin-top: 22px;
+    border-radius: 3px;
+}
+
+.nextav-meta-field {
+    width: 100%
+}
+
+/* Non Gutenburg Meta Boxes */
+.nextav-meta-container {
+    display: flex;
+    flex-wrap: wrap; /* Allow items to wrap onto new lines */
+}
+
+.nextav-meta-container input:not([type="checkbox"]),
+.nextav-meta-container select {
+    /* Make input fields and select dropdowns take up available space */
+    flex: 1;
+    /* Optionally, add additional styling properties as needed */
+    width: 100%; /* Ensure the input fields and select dropdowns take up the entire width */
+    margin-top: 5px;
+}
+
+.nextav-meta-status-icon {
+    margin-right: 5px;
+    margin-top: 3px;
+}
+
+.nextav-meta-description {
+    flex-basis: 100%; /* Force description onto a new line */
+    margin-bottom: 10px;
+}
+
+.nextav-admin-col-head-status {
+    width: 10%;
+}
+
+/* Update Booking Status Icon */
+.nextav-update-booking-icon {
+    margin-left: 5px;
+}
+
+/* Booking Status */
+.nextav-admin-booking-status {
+    white-space: nowrap;
+    margin-right: 10px;
+}
+
+/* Freelancer Mode Message */
+.nextav-freelancer-mode-message {
+    margin: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px 40px;
+    width: 50%;
+    border: var(--buddyclients-default-border);
+}
+.nextav-freelancer-mode-message p {
+    font-size: 16px;
+}
+
+/* Upgrade Message */
+.nextav-upgrade-link-container {
+    margin: 40px;
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 20px 40px;
+    width: 50%;
+    border: var(--buddyclients-default-border);
+}
+.nextav-upgrade-link {
+    font-size: 16px;
+}
+.nextav-upgrade-link i {
+    color: #037AAD;
+    margin-right: 5px;
+}
+
+.buddyclients-settings-section {
+    background-color: #fff;
+    padding: 20px;
+    border: solid 1px #D4D6D8;
+    border-radius: 10px;
+    margin: 25px;
+}
+
+.buddyclients-settings-section-title-wrap {
+    margin: 10px;
+}
+
+.buddyclients-settings-section-title {
+    margin-bottom: 15px;
+    margin-top: 0;
+    font-size: 20px;
+}
+
+.buddyclients-settings-section-title-divider {
+    color: #D4D6D8;
+    margin: 20px 0;
+}
+
+.buddyclients-admin-field {
+    margin-bottom: 15px;
+}
+
+.buddyclients-admin-field > label {
+    display: inline-block;
+    width: 200px; /* Adjust the width as needed */
+    font-weight: bold; /* Optionally make labels bold */
+}
+
+.buddyclients-admin-field-input-wrap > input,
+.buddyclients-admin-field-input-wrap > select {
+    width: 300px;
+    padding: 5px;
+    border-radius: 5px;
+    border: solid 1px #b6b8ba;
+}
+
+/* Components table */
+.nextav-checkbox-table {
+    border-collapse: collapse;
+    width: 100%;
+}
+
+.nextav-checkbox-table td {
+    border: 1px solid #ccc;
+    padding: 8px;
+    height: 50px;
+}
+
+.nextav-checkbox-table td:first-child {
+    width: 30%;
+    border-right: none;
+}
+
+.nextav-checkbox-table td:not(:first-child) {
+    border-left: none;
+}
+
+/* Style selected row */
+.nextav-checkbox-table tr.checked {
+    background-color: #f1f6fb;
+    border-left: solid 5px #7face1;
+}
+
+/* Hide required checkbox */
+.nextav-checkbox-table tr.required input {
+    opacity: 0;
+}
+
+.nextav-checkbox-table label {
+    display: block;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.nextav-checkbox-table .description {
+    color: #565656;
+}
+
+.nextav-checkbox-table label input[type="checkbox"] {
+    margin: 0 20px 0 10px;
+}
+
+.buddyclients-admin-field-input-wrap {
+    display: inline-block;
+    width: calc(100% - 210px); /* Adjust based on label width */
+    vertical-align: top; /* Align input fields with labels */
+}
+
+.buddyclients-nav-tab {
+    border-radius: 5px 5px 0 0;
+}
+/* Submenu Separator */
+ul.wp-submenu.wp-submenu-wrap li a[href="nextav-separator"] {
+    color: transparent; /* Make the text invisible */
+    pointer-events: none; /* Make the link unclickable */
+    display: block; /* Ensure it takes up full width */
+    width: 70%; /* Set the desired width, e.g., 80% of the parent width */
+    margin: auto !important; /* Center the separator horizontally */
+    margin-top: 10px !important;
+    border-top: 1px solid #555555; /* Grey border as separator */
+}
+
+/* Results Message - eg update payments results */
+.nextav-admin-results-message {
+    padding: 5px 10px;
+    background-color: gray;
+    color: white;
+    border-radius: 5px;
+    margin: 0 10px;
+    display: inline-block;
+}
+
+/* Admin Notice */
+.nextav-admin-notice {
+    background: #fff;
+    border-radius: 8px;
+    position:relative;
+}
+
+/* Container styles */
+.nextav-admin-notice-content {
+    padding: 24px;
+    padding-left: 100px;
+    display: flex;
+    align-items: flex-start; /* Ensures icon stays at the top */
+    gap: 12px; /* Space between icon and text */
+}
+
+/* Icon styles */
+.nextav-admin-notice-icon {
+    flex-shrink: 0; /* Prevents shrinking */
+    display: flex;
+    align-items: flex-start; /* Align icon to the top */
+    margin-top: 2px; /* Slight adjustment for alignment */
+}
+
+/* Message styles */
+.nextav-admin-notice-message {
+    flex-grow: 1; /* Takes up remaining space */
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column; /* Ensures paragraphs stack vertically */
+}
+
+/* Ensure paragraphs inside the message stack properly */
+.nextav-admin-notice-message p {
+    margin: 0 0 8px;
+    font-size: 14px;
+}
+
+.nextav-admin-notice-message p:last-child {
+    margin-bottom: 0;
+}
+
+.nextav-admin-notice-repair {
+    margin: 20px 0 10px;
+}
+
+/* Icon styles */
+.nextav-admin-notice-bc-icon {
+    position: absolute; /* Absolutely position it within the parent */
+    top: 50px; /* Vertically center the icon */
+    left: 15px; /* Position it inside the left border */
+    transform: translateY(-50%); /* Adjust for exact vertical centering */
+    width: 40px; /* Adjust size to match the icon's proportions */
+    height: 40px;
+    background-image: url('../media/buddyclients-icon-color.png');
+    background-size: contain; /* Ensure the icon scales properly */
+    background-repeat: no-repeat; /* Prevent repeating the background */
+    background-position: center; /* Center the background image within the element */
+}
+
+
+/* Create the thick left border */
+.nextav-admin-notice::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 80px; /* Thickness of the left border */
+    height: 100%;
+    background-color: rgb(235, 239, 248); /* Color of the left border */
+}
+
+
+/* Mobile Styling */
+@media (max-width: 768px) {
+    /* Adjust padding for smaller screens */
+    .nextav-admin-notice-content {
+        padding: 0;
+        padding-left: 100px;
+    }
+
+    /* Stack content vertically */
+    .nextav-admin-notice-content {
+        flex-direction: column; /* Stack icon and message vertically */
+        align-items: flex-start;
+    }
+
+    /* Ensure icon and text are properly spaced */
+    .nextav-admin-notice-icon {
+        margin-bottom: 10px; /* Space between icon and message */
+    }
+
+    /* Adjust font size for better readability on small screens */
+    .nextav-admin-notice-message p {
+        font-size: 16px; /* Slightly larger text for mobile */
+    }
+}
+
+/* Welcome Message */
+
+/* Quick links */
+.nextav-quick-links {
+    display: inline-block;
+    padding: 20px 30px;
+    border-radius: 10px;
+    border: 2px solid #E7E9EC;
+    margin: 20px 0;
+    background-color: #fff;
+}
+.nextav-quick-links-title {
+    font-weight: bold;
+    padding-right: 10px;
+}
+
+/* Dismiss button */
+.nextav-dismiss-welcome-btn-container {
+    margin: 10px 0 0;
+}
+.nextav-dismiss-welcome-btn {
+    color: #fff;
+    background-color: #e74c3c;
+    padding: 0.5em 1em;    
+    text-decoration: none;
+    border-radius: 5px;
+}
+.nextav-dismiss-welcome-btn:hover {
+    color: #fff;
+    background-color: #cd5043;
+    text-decoration: none;
+}

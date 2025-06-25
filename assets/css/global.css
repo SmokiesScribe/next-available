@@ -1,0 +1,501 @@
+/* General style classes */
+.opacity-0 {
+    opacity: 0;
+}
+.buddyc-hidden {
+    display: none;
+}
+.buddyc-visible {
+    display: block;
+}
+
+/* Max width */
+.buddyc-max-650 {
+    max-width: 650px;
+    margin: auto;
+}
+.buddyc-max-800 {
+    max-width: 800px;
+    margin: auto;
+}
+.buddyc-max-1000 {
+    max-width: 1000px;
+    margin: auto;
+}
+.buddyc-max-1200 {
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Spacers */
+.buddyc-spacer-20 {
+    height: 20px;
+}
+
+/* Text */
+.buddyc-text-center {
+    text-align: center;
+}
+.buddyc-font-small {
+    font-size: 11px;
+}
+.buddyc-font-med {
+    font-size: 15px;
+}
+.buddyc-font-large {
+    font-size: 18px;
+}
+.buddyc-text-red {
+    color: red;
+}
+.buddyc-text-bold {
+    font-weight: bold;
+}
+
+/* Margins */
+.buddyc-top-margin-small {
+    margin-top: 10px;
+}
+.buddyc-top-margin-med {
+    margin-top: 30px;
+}
+.buddyc-top-margin-large {
+    margin-top: 80px;
+}
+.buddyc-bot-margin-small {
+    margin-bottom: 10px;
+}
+.buddyc-bot-margin-med {
+    margin-bottom: 30px;
+}
+.buddyc-bot-margin-large {
+    margin-bottom: 80px;
+}
+
+.buddyc-margin-20 {
+    margin: 20px;
+}
+
+/* Lists */
+.buddyc-no-list {
+    list-style: none;
+    padding: 0;
+}
+
+/* Boxed */
+.buddyc-box {
+    margin: auto;
+    background-color: #fff;
+    border: var(--buddyclients-default-border);
+    margin-bottom: 20px;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+/* Tag label */
+.buddyc-tag-label {
+    background-color: var(--buddyclients-primary-color);
+    color: #fff;
+    padding: 2px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    display: inline-block;
+}
+.buddyc-tag-label.tag-0 {
+    background-color: var(--buddyclients-primary-color);
+}
+.buddyc-tag-label.tag-1 {
+    background-color: var(--buddyclients-accent-color);
+}
+.buddyc-tag-label.tag-2 {
+    background-color: var(--buddyclients-tertiary-color);
+}
+/* Dynamically adjusted colors */
+.buddyc-tag-label.tag-3 {
+    background-color: var(--buddyclients-primary-color);
+    filter: brightness(1.2);
+}
+.buddyc-tag-label.tag-4 {
+    background-color: var(--buddyclients-accent-color);
+    filter: brightness(1.2);
+}
+.buddyc-tag-label.tag-5 {
+    background-color: var(--buddyclients-tertiary-color);
+    filter: brightness(1.2);
+}
+.buddyc-tag-label.tag-6 {
+    background-color: var(--buddyclients-primary-color);
+    filter: brightness(0.8);
+}
+.buddyc-tag-label.tag-7 {
+    background-color: var(--buddyclients-accent-color);
+    filter: brightness(0.8);
+}
+.buddyc-tag-label.tag-8 {
+    background-color: var(--buddyclients-tertiary-color);
+    filter: brightness(0.8);
+}
+
+
+/* Button Container */
+.buddyc-btn-container {
+    display: flex; /* Flex layout for consistent spacing */
+    gap: 20px; /* Adds spacing between multiple buttons */
+    margin: 40px auto;
+}
+
+/* Buttons */
+.buddyc-btn {
+    padding: 10px;
+    border-radius: 5px;
+    text-decoration: none;
+    transition: all 0.3s ease; /* Smooth transitions for hover effects */
+    display: inline-block; /* Ensures buttons behave properly inline */
+    margin: 0; /* Resets any unwanted margin */
+    font-weight: 600;
+}
+.buddyc-btn:hover {
+    filter: brightness(115%); /* Slightly brighten */
+    opacity: 0.9; /* Subtle transparency */
+    transform: translateY(-2px); /* Slightly lifts the button */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0.1, 0.1); /* Adds a gentle shadow */
+}
+.buddyc-btn.small {
+    padding: 5px 10px;
+    font-size: 12px;
+}
+.buddyc-btn.medium {
+    padding: 12px;
+    font-size: 16px;
+}
+.buddyc-btn.large {
+    padding: 18px;
+    font-size: 18px;
+}
+.buddyc-btn.wide {
+    padding: 12px 50px;
+    font-size: 16px;
+}
+.buddyc-btn.primary {
+    background-color: var(--buddyclients-primary-color);
+    border: none;
+    color: #fff;
+}
+.buddyc-btn.secondary {
+    background-color: var(--buddyclients-accent-color);
+    border: none;
+    color: #fff;
+}
+.buddyc-btn.outline {
+    color: var(--buddyclients-tertiary-color);
+    border: solid 1.5px var(--buddyclients-tertiary-color);
+}
+
+/* Background overlay */
+#buddyc-overlay {
+    position: fixed;  /* Fixed position to cover the entire viewport */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--buddyclients-primary-overlay);
+    z-index: 999;  /* Make sure it's behind the popup */
+    display: none;
+}
+
+/* Breadcrumbs */
+.buddyc-breadcrumbs {
+    margin: 0 8px;
+    font-size: 12px;
+}
+
+/* Profile extensions */
+.buddyc-files-cancel-container {
+    max-width: 650px;
+    margin: auto; 
+}
+.buddyc-files-cancel {
+    color: red;
+}
+
+/* General icons */
+.buddyc-icon {
+    font-size: 20px;
+}
+.buddyc-icon.buddyc-icon-color-blue {
+    color: blue;
+}
+.buddyc-icon.buddyc-icon-color-black {
+    color: black;
+}
+.buddyc-icon.buddyc-icon-color-green {
+    color: green;
+}
+.buddyc-icon.buddyc-icon-color-red {
+    color: red;
+}
+.buddyc-icon.buddyc-icon-color-gray {
+    color: gray;
+}
+.buddyc-icon.bb-icon-class {
+    font-size: 20px;
+}
+.buddyc-icon.fa-icon-class {
+    font-size: 16px;
+}
+.buddyc-icon.admin-info {
+    margin-right: 10px;
+    color: #7face1;
+}
+
+/* Admin notice icon colors */
+.buddyc-icon.buddyc-icon-color-admin-blue {
+    color: #7face1;
+}
+.buddyc-icon.buddyc-icon-color-admin-green {
+    color: #48a13e;
+}
+.buddyc-icon.buddyc-icon-color-admin-orange {
+    color: #d3a83e;
+}
+.buddyc-icon.buddyc-icon-color-admin-red {
+    color: #c5443f;
+}
+
+/* Subnav */
+.buddyc-subnav {
+    margin-right: 20px;
+}
+/* Copy Paste Field */
+.bb-icon-copy {
+    font-size: 22px;
+}
+.bb-icon-copy:hover {
+    color: gray;
+    cursor: pointer;
+}
+.buddyc-copy-success {
+    font-size: 14px;
+    font-weight: 500;
+    margin: 10px
+}
+.buddyc-copy-reference {
+    display: none;
+}
+.buddyc-copy-input {
+    max-width: 100%;
+}
+.buddyc-copy-success {
+    margin: 10px;
+    font-weight: 500;
+}
+/* Archive */
+.archive-title-container {
+    margin-top: 30px;
+}
+.buddyc-archive-container {
+    margin: 10px;
+    max-width: 1400px;
+    padding: 0 10px;
+}
+/* Signature field */
+#signature-clear-button {
+    max-width: 150px;
+    padding: 5px;
+    background-color: #fafbfd;
+    color: var(--buddyclients-tertiary-color);
+    border-color: var(--buddyclients-tertiary-color);
+    font-size: 12px;
+}
+
+/* Description Checkbox */
+.buddyc_description_checkbox + label {
+    color: gray;
+    font-size: 15px;
+}
+
+/* No Margin */
+.margin-free {
+    margin: 0 !important;
+}
+/* Hide Group Admin Menu Items */
+#group-settings-groups-li,
+#manage-members-groups-li,
+#delete-group-groups-li {
+    display: none;
+}
+
+/* On-Screen Notification Edge Color */
+.bb-onscreen-notification-enable .bb-onscreen-notification .notification-list .read-item.recent-item:before {
+    background: var(--buddyclients-accent-color);
+}
+
+/* Forms */
+.buddyc-form .description {
+    color: #8F9091;
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.buddyc-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 650px;
+    margin: auto;
+    width: 100%
+}
+
+.buddyc-form {
+    width: 100%;
+}
+
+.buddyc-form input[type="submit"]:disabled {
+    background-color: gray;
+    cursor: not-allowed;
+}
+
+.buddyc-form legend {
+    color: var(--buddyclients-primary-color);
+    font-size: 18px;
+}
+
+.buddyc-form fieldset {
+    border: none;
+    padding: 0;
+    width: 100%;
+    margin: 0;
+}
+
+.no-team-available {
+    font-size: 14px;
+    color: gray;
+}
+
+/* Hide default checkbox */
+.buddyc-form input[type="checkbox"] {
+    opacity: 0;
+    display: none;
+}
+
+.buddyc-form .form-group {
+    padding: 15px 0;
+}
+
+.buddyc-form textarea,
+.buddyc-form .form-group input,
+.buddyc-form .form-group select {
+    width: 100%;
+}
+
+.buddyc-form.buddyc-table-form .form-group {
+    padding: 3px;
+}
+
+/* Horizontal checkboxes */
+.horizontal .bp-checkbox-wrap {
+    display: inline-flex; /* Align checkboxes horizontally */
+    align-items: center; /* Vertically center checkbox and label */
+    margin-right: 15px; /* Adds space between checkboxes */
+}
+
+/* Styling for label, optional for better alignment */
+.horizontal .bp-checkbox-wrap label {
+    display: inline-block;
+    margin-right: 10px; /* Space between label and checkbox */
+}
+
+/* User profile */
+.buddyc-form-user-profile {
+    display: flex;
+    align-items: center;
+    border-bottom: var(--buddyclients-default-border);
+    padding: 20px;
+    max-width: 500px;
+}
+
+.buddyc-form-user-avatar {
+    margin-right: 10px;
+    margin-left: 20px;
+}
+
+.buddyc-form-user-avatar img {
+    border-radius: 50%;
+}
+
+.buddyc-form-user-name {
+    font-weight: bold;
+    color: var(--buddyclients-primary-color);
+}
+
+/* File upload */
+.manuscript-upload {
+    max-width: 600px;
+}
+
+/* Global */
+.display-none {
+    display: none;
+}
+.max-650 {
+    max-width: 650px;
+    margin: auto;
+}
+
+/* Block Quote */
+.wp-block-quote {
+    background-color: #ffffff !important;
+    border: var(--buddyclients-default-border);
+}
+.wp-block-quote:before {
+    background-color: var(--buddyclients-accent-color) !important;
+}
+
+/* ALERT BAR */
+.custom-alert-bar {
+    background-color: var(--buddyclients-primary-color);
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    position: fixed !important;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+}
+
+.custom-alert-bar a {
+    color: #ffffff;
+    text-decoration: underline;
+}
+
+.custom-alert-bar a:hover {
+    color: #e7e9ec;
+}
+.alert-message-icon {
+    font-size: 20px;
+}
+
+/* Signature */
+.buddyc-legal-signature {
+    max-width: 300px;
+}
+
+.buddyc-signature-container canvas {
+    margin: 10px 0;
+    background-color: var(--bb-content-background-color);
+    border: 1px solid var(--bb-content-border-color);
+    border-radius: var(--bb-input-radius);
+    box-shadow: none;
+    padding: 0 12px;
+    color: var(--bb-body-text-color);
+}
+
+.form-group.buddyc-signature-container .buddyc-signature-clear-button {
+    background-color: #fff;
+    color: gray;
+    border: 1px solid gray;
+    padding: 5px 10px;
+    font-size: 12px;
+    float: right;
+}

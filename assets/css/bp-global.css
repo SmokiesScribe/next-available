@@ -1,0 +1,191 @@
+/* Form */
+.buddyc-form {
+    margin: auto;
+    max-width: 800px;
+}
+
+/* Style checkboxes */
+.buddyc-form input[type="checkbox"] {
+    -webkit-appearance: none; /* Remove default checkbox appearance */
+    -moz-appearance: none;
+    appearance: none;
+    display: inline-block !important;
+    opacity: 1 !important;
+    width: 16px !important; /* Adjust size as needed */
+    height: 16px;
+    border: 1px solid #d7d9dd; /* Border color */
+    border-radius: 4px; /* Rounded corners */
+    background-color: #fff; /* Background color */
+    cursor: pointer; /* Change cursor on hover */
+    margin-right: 5px; /* Add some space between checkbox and label */
+    vertical-align: middle; /* Align checkbox vertically */
+    position: relative; /* To position the checkmark inside */
+    text-align: center; /* Center text (checkmark) horizontally */
+    line-height: 16px; /* Vertically align the checkmark */
+}
+
+/* Style checked state of checkboxes */
+.buddyc-form input[type="checkbox"]:checked {
+    background-color: var(--buddyclients-accent-color); /* Change background color when checked */
+}
+
+/* Style the checkmark inside the checkbox */
+.buddyc-form input[type="checkbox"]::before {
+    content: "\2713"; /* Unicode checkmark character */
+    font-size: 12px; /* Adjust size of checkmark */
+    color: #fff; /* Checkmark color */
+    display: inline-block;
+    width: 16px !important;
+    height: 16px;
+    text-align: center; /* Center checkmark horizontally */
+    line-height: 16px; /* Vertically align the checkmark */
+    position: absolute; /* Position relative to the checkbox */
+    top: 0; /* Align top of checkmark to top of the checkbox */
+    left: 0; /* Align left of checkmark to left of the checkbox */
+    visibility: hidden; /* Hide checkmark by default */
+}
+
+/* Show checkmark when checkbox is checked */
+.buddyc-form input[type="checkbox"]:checked::before {
+    visibility: visible; /* Show checkmark */
+}
+
+/* Disabled checkbox */
+.buddyc-form input[type="checkbox"]:disabled {
+    background-color: #dddddd;
+    cursor: not-allowed;
+}
+
+/* Style the checkbox label */
+.buddyc-form label {
+    font-size: 16px; /* Adjust size as needed */
+    line-height: 16px; /* Align label vertically with checkbox */
+    vertical-align: middle; /* Align label vertically */
+}
+
+/* Adjust checkbox wrap spacing */
+.buddyc-form .bp-checkbox-wrap {
+    margin-bottom: 5px; /* Add some space between each checkbox */
+}
+
+/* Style inputs */
+.buddyc-form select,
+.buddyc-form input,
+.buddyc-input {
+    padding: 10px;
+    border-radius: 5px;
+    border: solid 1px #d7d9dd;
+}
+
+.buddyc-form input[type="submit"] {
+    background-color: var(--buddyclients-primary-color);
+    color: #fff;
+    font-size: 16px;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+.buddyc-form input[type="submit"]:hover {
+    background-color: var(--buddyclients-tertiary-color);
+    cursor: pointer;
+}
+
+/* Style the entire table */
+#line-items-table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+    border: solid 1px #d7d9dd;
+}
+
+/* Style the table header */
+#line-items-table th {
+    padding: 10px; /* Padding for content */
+    border-bottom: solid 1px #d7d9dd; /* Only bottom border */
+}
+
+/* Style the table body */
+#line-items-table td {
+    padding: 10px; /* Padding for content */
+    border-bottom: solid 1px #d7d9dd; /* Only bottom border */
+}
+
+/* Upload button */
+.dz-default {
+    background: #f2f4f5;
+    border: 0 !important;
+    border-radius: 5px;
+    min-height: 153px;
+    max-height: 153px;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: center;
+    -ms-flex-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    font-size: 16px;
+    letter-spacing: -.24px;
+    line-height: 26px;
+    padding: 20px 0;
+}
+
+.dz-button {
+    background-color: transparent !important;
+    border: 0;
+    box-shadow: none !important;
+    padding: 0 !important;
+    font-weight: 300 !important;
+    font-size: 16px !important;
+    border-radius: 0 !important;
+}
+
+/* Add an icon above the text */
+.buddyc-file-upload-button::before {
+    content: "\f0c6"; /* Unicode for the paperclip icon */
+    font-family: 'Font Awesome 5 Free'; /* Specify Font Awesome's font-family */
+    font-weight: 900; /* Ensure the solid icon style is used */
+    font-size: 24px;  /* Adjust icon size */
+    margin-bottom: 8px; /* Space between the icon and text */
+    
+    /* Style for the circle */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 10px auto;
+    width: 40px;   /* Size of the circle */
+    height: 40px;  /* Size of the circle */
+    border-radius: 50%; /* Make it a circle */
+    background-color: #e6e8e9; /* Circle color */
+    color: #9b9c9f; /* Icon color */
+}
+
+/* Avatar */
+.blue-pen-form-user-avatar img {
+    border-radius: 100%;
+}
+
+/* Buttons */
+.buddyc-button {
+    background-color: var(--buddyclients-primary-color);
+    padding: 15px;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 16px;
+    border: none;
+    margin: 10px 0;
+}
+
+.buddyc-button:hover {
+    background-color: var(--buddyclients-tertiary-color);
+    cursor: pointer;
+}
+
+/* Signature */
+.buddyc-signature-container canvas {
+    background-color: #fff;
+    border-radius: 5px;
+    border: solid 1px #d7d9dd;
+}

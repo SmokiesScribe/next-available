@@ -1,0 +1,60 @@
+/* Title */
+.buddyc-archive-title-container {
+    width: 100%;
+}
+/* Archive Items Container */
+.buddyc-archive-container {
+    list-style: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    display: flex !important;
+    flex-wrap: wrap !important;
+    justify-content: left;
+}
+
+/* Single Archive Container */
+.buddyc-archive-post {
+    margin: 10px;
+    background-color: #fff;
+    border-radius: 15px;
+    padding: 20px;
+    border: var(--buddyclients-default-border);
+    align-items: center;
+    text-align: center;
+    flex-grow: 1; /* Allow items to grow equally */
+    flex-basis: 300px; /* initial width */
+    box-sizing: border-box; /* Include padding and border in the width calculation */
+}
+.buddyc-archive-post:hover {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Link */
+.buddyc-archive-post a {
+    padding: 0;
+    margin: 0;
+    color: inherit;
+    text-decoration: none;
+}
+.buddyc-archive-post a:hover {
+    color: inherit;
+    text-decoration: none;
+}
+
+/* Mobile */
+@media only screen and (min-width: 767px) {
+    .buddyc-archive-post {
+        /* Set width to keep single items from extending */
+        max-width: calc(33.33% - 20px);
+    }
+    .buddyc-archive-post-content {
+        flex-grow: 1; /* Allow content to grow and take available space */
+    }
+}
+
+/* Hide entry content for single buddyc archive with wp default theme */
+.post-type-archive-buddyc_testimonial .wp-block-query-title,
+.post-type-archive-buddyc_service .wp-block-query-title,
+.post-type-archive-buddyc_brief .wp-block-query-title {
+    display: none;
+}

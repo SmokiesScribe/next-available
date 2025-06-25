@@ -1,0 +1,49 @@
+/* Loading Indicator Container */
+#buddyc-loading-indicator-container {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Center the container */
+    width: auto; /* Allow width to adjust based on content */
+    text-align: center; /* Center the text */
+    transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out; /* Transition for both opacity and visibility */
+}
+
+/* Spinner Styling */
+#buddyc-loading-indicator {
+    margin: 0 auto; /* Center horizontally */
+    margin-bottom: 10px; /* Space between spinner and message */
+    border: 16px solid #f3f3f3; /* Light grey border */
+    border-radius: 50%; /* Circular shape */
+    border-top: 16px solid var(--buddyclients-accent-color, #037AAD); /* Fallback color for admin area */
+    width: 60px; /* Adjust size if needed */
+    height: 60px; /* Adjust size if needed */
+    animation: spin 2s linear infinite; /* Spinning animation */
+}
+
+/* Loading Message Styling */
+#buddyc-loading-indicator-message {
+    font-size: 14px; /* Adjust font size if needed */
+    color: gray; /* Adjust text color if needed */
+    text-align: center;
+}
+
+/* Keyframes for spinning animation */
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+/* Ensure compatibility with WordPress admin */
+body.wp-admin #buddyc-loading-indicator-container {
+    z-index: 99999; /* Higher z-index for admin compatibility */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+/* Spinner for WordPress admin */
+body.wp-admin #buddyc-loading-indicator {
+    border-top: 16px solid #0073aa; /* Default WordPress blue as fallback */
+}

@@ -1,0 +1,69 @@
+/* Single post */
+.buddyc-single-post {
+    padding: 0 10px;
+    width: 100%;
+    margin: 10px auto 20px;
+}
+
+/* Breadcrumbs */
+.buddyc-breadcrumbs {
+    margin: 30px 0;
+    font-size: 16px;
+}
+.buddyc-breadcrumbs i {
+    margin: 0 8px;
+    font-size: 12px;
+}
+.buddyc-breadcrumbs a {
+    color: var(--buddyclients-tertiary-color);
+    text-decoration: none;
+    transition: filter 0.3s ease;
+}
+.buddyc-breadcrumbs a:hover {
+    filter: brightness(0.8);
+}
+.buddyc-breadcrumbs a:hover {
+    color: gray;
+}
+
+/* Round responsive image */
+.buddyc-round-image {
+    width: 100px;
+    height: 100px;
+    margin: auto;
+    text-align: center;
+    overflow: hidden; /* Constrain image */
+    border-radius: 50%; /* Circle */
+    margin-bottom: 10px;
+
+    /* Set fallback color and align text */
+    background-color: var(--buddyclients-tertiary-color);
+    display: flex;
+    justify-content: center; /* Aligns text horizontally */
+    align-items: center; /* Aligns text vertically */ 
+}
+.buddyc-round-image span {
+    color: #fff; /* style fallback text */
+}
+.buddyc-round-image img {
+    width: 100px; /* Set the width */
+    height: 100px; /* Set the height */
+    object-fit: cover; /* Crop the image to cover the container */
+    transition: transform 0.3s ease; /* Smooth transition for the zoom effect */
+}
+.buddyc-round-image img:hover {
+    transform: scale(1.1); /* Zoom in the image */
+}
+
+/* Hide entry content for single buddyc post with wp default theme */
+.single-buddyc_testimonial .wp-block-post-title,
+.single-buddyc_testimonial .wp-block-post-featured-image,
+.single-buddyc_testimonial .wp-block-group:has(> .wp-block-post-author-name),
+.single-buddyc_service .wp-block-post-title,
+.single-buddyc_service .wp-block-post-featured-image,
+.single-buddyc_service .wp-block-group:has(> .wp-block-post-author-name),
+.single-buddyc_brief .wp-block-post-title,
+.single-buddyc_brief .wp-block-post-featured-image,
+.single-buddyc_brief .wp-block-group:has(> .wp-block-post-author-name) {
+    display: none;
+}
