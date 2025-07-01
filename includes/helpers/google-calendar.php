@@ -3,6 +3,7 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 use NextAv\Includes\GoogleCal;
 use GriffinVendor\Google\Client;
+use GriffinVendor\Google\Service\Calendar;
 
 /**
  * Redirects to the Google auth screen.
@@ -27,10 +28,9 @@ add_action( 'admin_init', 'nextav_maybe_redirect_to_google_auth' );
  * 
  * @since 1.0.0
  */
-function nextav_handle_google_auth() {
+function nextav_handle_google_auth() {    
 
     if ( ! class_exists( Client::class ) ) {
-        var_dump( 'Class does not exist: ' . Client::class );
         return;
     }
 
@@ -45,12 +45,15 @@ function nextav_handle_google_auth() {
           // @TESTING bypass during development to allow ngrok to work
     }
 
-    $client = new Client();
-    $client->setClientId( 'YOUR_CLIENT_ID' );
-    $client->setClientSecret( 'YOUR_CLIENT_SECRET' );
-    $client->setRedirectUri( 'YOUR_REGISTERED_REDIRECT_URI' );
+    // New GoogleCal
+    $cal = new GoogleCal;
 
-    $token = $client->fetchAccessTokenWithAuthCode( $_GET['code'] );
+    $client = new Client();
+    $client->setClientId( $cal->client_id );
+    $client->setClientSecret( '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' ); //@todo Create setting
+    $client->setRedirectUri( $cal->redirect_url );
+
+    $token = $client->fetchAccessTokenWithAuthCode( $code );
 
     if ( isset( $token['error'] ) ) {
         wp_die( 'Token error: ' . esc_html( $token['error_description'] ?? $token['error'] ) );
@@ -64,13 +67,3 @@ function nextav_handle_google_auth() {
     exit;
 }
 add_action( 'admin_init', 'nextav_handle_google_auth' );
-
-/**
- * Loads the Google API library.
- * 
- * @since 1.0.0
- */
-function nextav_load_google() {
-    // Load the Google API library
-    require_once NEXTAV_VENDOR_DIR . '/google/tcpdf/tcpdf.php';
-}

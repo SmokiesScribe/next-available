@@ -110,6 +110,12 @@ if ( ! class_exists( 'NextAv' ) ) {
     	 * @since 0.4.3
     	 */
     	private function autoload() {
+			// Vendor autoload
+			if ( file_exists( NEXTAV_VENDOR_DIR . '/autoload.php' ) ) {
+				require_once NEXTAV_VENDOR_DIR . '/autoload.php';
+			}
+
+			// Plugin autoload
     		require_once( plugin_dir_path( __FILE__ ) . 'config/Autoloader.php' );
     		NextAv\Config\Autoloader::init();
     	}

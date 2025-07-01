@@ -26,12 +26,7 @@ class Nav {
         
         $tabs = [
             'dashboard' => [
-                __( 'All Bookings', 'nextav' )        => ['page'  => 'nextav-dashboard'],
-                ''                                          => ['page'  => 'nextav-booked-services'],
-                __( 'Overview', 'nextav' )            => ['page'  => 'nextav-bookings-dashboard'],
-                __( 'Payments', 'nextav' )            => ['page'  => 'nextav-payments'],
-                __( 'Users', 'nextav' )               => ['page'  => 'nextav-users'],
-                __( 'Leads', 'nextav' )               => ['page'  => 'nextav-leads'],
+                __( 'Install', 'nextav' )             => ['page'  => 'nextav-dashboard'],
             ],
             'settings' => [
                 __( 'General', 'nextav' )            => ['page'  => 'nextav-general-settings'],

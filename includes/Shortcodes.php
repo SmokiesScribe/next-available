@@ -2,6 +2,8 @@
 namespace NextAv\Includes;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+use NextAv\Includes\TheDate;
+
 /**
  * Registers plugin shortcodes.
  * 
@@ -31,10 +33,15 @@ class Shortcodes {
      */
     public static function shortcodes_data() {
         $data = [
-            'booking' => [
-                'shortcode' => 'nextav_booking_form',
-                'class'     => BookingForm::class,
-                'method'    => 'build_form'
+            'next_available' => [
+                'shortcode' => 'next_available',
+                'class'     => TheDate::class,
+                'method'    => 'display'
+            ],
+            'next_available_updated' => [
+                'shortcode' => 'next_available_updated',
+                'class'     => TheDate::class,
+                'method'    => 'display_updated'
             ],
         ];
 

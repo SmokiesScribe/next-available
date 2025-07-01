@@ -1,110 +1,47 @@
-/* Table Styles */
-.booking-dashboard-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 50px auto;
-    font-size: 14px;
-}
-.booking-dashboard-table th, .booking-dashboard-table td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
-    text-align: center;
-}
-.booking-dashboard-table th {
-    background-color: #f4f4f4;
-    font-weight: bold;
-    color: #333;
-}
-.booking-dashboard-table tr:nth-child(even) {
-    background-color: #f9f9f9;
-}
-.booking-dashboard-column-title {
-    font-weight: bold;
-    text-align: left;
-    background-color: #f4f4f4;
-}
-.nextav-dashboard-item {
-    font-weight: normal;
-    color: #333;
-}
-
-/* Charts row */
-.charts-row {
-    display: flex;
-    width: 100%; /* Full width of the container */
-    flex-wrap: wrap; /* Allows containers to wrap onto new lines */
-    gap: 10px; /* Space between containers */
-    justify-content: center; /* Center the items horizontally */
-}
-
-/* Chart container */
-.chart-container {
-    box-sizing: border-box; /* Ensures padding and borders are included in the width/height */
-    flex: 1 1 calc(33.333% - 20px); /* Default width for most items */
-    min-width: 300px; /* Minimum width to allow responsive behavior */
-    display: flex; /* Use flexbox layout */
-    flex-direction: column; /* Stack child elements vertically */
-    align-items: center; /* Center content horizontally */
-    position: relative; /* Ensure correct positioning for child elements */
-}
-
-/* Adjust width for taller containers */
-.chart-container.pie {
-    flex: 1 1 calc(25% - 400px); /* Reduce width for taller items */
-    min-width: 250px; /* Adjust minimum width for responsiveness */
-}
-
-/* Adjust width for last container on each row */
-.chart-container:last-child {
-    margin-right: 0; /* Remove right margin for the last container */
-}
-
-/* Specific styling for tall items */
-.nextav-canvas {
-    width: 100%; /* Make canvas take full width of its container */
-    height: 100%; /* Make canvas take full height of its container */
-    object-fit: contain; /* Adjusts the canvas size to fit its container */
-}
-
-.nextav-chart {
-    margin: 20px 10px;
-    height: 100%;
-}
-
-.nextav-chart h3 {
-    margin-left: 20px;
-}
-
-/* Add max-height check to identify "tall" items */
-@media (min-height: 600px) {
-    .chart-container.tall-item {
-        flex: 1 1 calc(25% - 20px); /* Narrower width for taller items */
-    }
-}
-
-/* Key Metric Styling */
-.nextav-dashboard-key-metric {
-    display: flex; /* Use flexbox for alignment */
-    align-items: center; /* Center items vertically */
-    justify-content: center; /* Center items horizontally */
-    padding: 10px; /* Space inside the container */
-    margin: 20px auto; /* Space outside the container */
-    margin-bottom: 50px;
-    border: 1px solid #ddd; /* Light border around the container */
-    border-radius: 5px; /* Rounded corners */
-    background-color: #f9f9f9; /* Light background color */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow for depth */
-    font-size: 16px; /* Font size for the text */
-    font-weight: bold; /* Make the text bold */
-    color: #333; /* Text color */
-    width: 75%;
-}
-
-.nextav-dashboard-key-metric span {
-    display: block; /* Make the span take full width */
-}
-
-.nextav-overview-content {
+.nextav-admin-wrap {
     max-width: 800px;
-    margin: auto;
+    padding: 20px;
+}
+
+.nextav-subheading {
+    font-size: 16px;
+    margin-bottom: 20px;
+    color: #555;
+}
+
+.nextav-section {
+    margin-top: 40px;
+}
+
+.nextav-admin-title {
+    font-weight: 250;
+    line-height: 1.5;
+}
+
+.nextav-section h2,
+.nextav-section h3 {
+    margin-bottom: 10px;
+}
+
+.nextav-code-block {
+    background: #f7f7f7;
+    border: 1px solid #ddd;
+    padding: 10px;
+    border-radius: 6px;
+    display: inline-block;
+    margin: 6px 0 14px 0;
+    font-family: monospace;
+}
+
+.nextav-code-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+.nextav-code-list li {
+    margin: 5px 0;
+    font-family: monospace;
+    background: #f9f9f9;
+    padding: 6px 10px;
+    border-radius: 4px;
 }
