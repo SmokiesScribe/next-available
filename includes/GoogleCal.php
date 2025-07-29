@@ -14,18 +14,11 @@ use \DateInterval;
 class GoogleCal {
 
     /**
-     * The client secret.
+     * Whether the user is bypassing the proxy server.
      * 
-     * @var string
+     * @var bool
      */
-    private $client_secret;
-    
-    /**
-     * The client ID.
-     * 
-     * @var string
-     */
-    public $client_id;
+    public $bypass_proxy;
 
     /**
      * The redirect url.
@@ -35,12 +28,43 @@ class GoogleCal {
     public $redirect_url;
 
     /**
-     * The Google scopes.
+     * The disconnect account url.
      * 
      * @var string
      */
-    private $google_scopes;
+    public $disconnect_url;
+
+    /**
+     * The stored refresh token.
+     * 
+     * @var string
+     */
+    private $refresh_token;
+
+    /**
+     * The user's client ID.
+     * Used when bypassing proxy server.
+     * 
+     * @var string
+     */
+    private $client_id;
+
+    /**
+     * The user's client secret.
+     * Used when bypassing proxy server.
+     * 
+     * @var string
+     */
+    private $client_secret;
     
+    /**
+     * The google scopes.
+     * Used when bypassing proxy server.
+     * 
+     * @var string
+     */
+    private $google_scopes = 'https://www.googleapis.com/auth/calendar.readonly';
+
     /**
      * Constructor method.
      * 
@@ -50,10 +74,55 @@ class GoogleCal {
      *                          Defaults to the current URL.
      */
     public function __construct( $url = null ) {
-        $this->client_secret = 'CLIENT_SECRET'; // pull from settings?
-        $this->client_id = 'CLIENT_ID';
-        $this->redirect_url = $this->redirect_url();
-        $this->google_scopes = 'https://www.googleapis.com/auth/calendar.readonly';
+        $this->refresh_token = get_option( 'nextav_google_refresh_token' );
+        $this->redirect_url = $this->redirect_url( 'connect' );
+        $this->disconnect_url = $this->redirect_url( 'disconnect' );
+
+        // Get info to bypass proxy server
+        $this->get_bypass_info();
+    }
+
+    /**
+     * Retrieves info for bypassing the proxy server.
+     * 
+     * @since 1.0.0
+     */
+    private function get_bypass_info() {
+        $bypass = nextav_get_setting( 'advanced', 'bypass' );
+        $this->bypass_proxy = ( $bypass === 'yes' );
+
+        if ( $this->bypass_proxy ) {
+            $this->client_id = nextav_get_setting( 'advanced', 'user_google_client_id' );
+            $this->client_secret = nextav_get_setting( 'advanced', 'user_google_client_secret' );
+        }
+    }
+
+    /**
+     * Retrieves the client ID.
+     * 
+     * @since 1.0.0
+     */
+    public function get_client_id() {
+        return $this->client_id;
+    }
+
+    /**
+     * Retrieves the client secret.
+     * 
+     * @since 1.0.0
+     */
+    public function get_client_secret() {
+        return $this->client_secret;
+    }
+
+    /**
+     * Disconnects the current Google account.
+     * 
+     * @since 1.0.0
+     */
+    public function disconnect() {
+        delete_option( 'nextav_google_tokens' );
+        nextav_update_setting( 'integrations', 'calendar_id', null );
     }
 
     /**
@@ -63,12 +132,15 @@ class GoogleCal {
      * This url must be added to the list of authorized redirect URLs.
      * 
      * @since 1.0.0
+     * 
+     * @param   string  $action Connect or disconnect.
      */
-    private function redirect_url() {
+    public function redirect_url( $action = 'connect' ) {
+
         // Define url components
         $admin_url = admin_url();
         $page_param = 'page=nextav-integrations-settings';
-        $action_param = 'nextav-auth=connect';
+        $action_param = 'nextav-auth=' . $action;
 
         return sprintf(
             '%1$sadmin.php?%2$s&%3$s',
@@ -79,21 +151,48 @@ class GoogleCal {
     }
 
     /**
+     * Builds the state.
+     * 
+     * @since 1.0.0
+     */
+    private function build_state() {
+        $return_url = admin_url( 'admin.php?page=nextav-integrations-settings' );
+        $nonce = wp_create_nonce( 'nextav_google_auth' );
+
+        $state_array = [
+            'return_url' => $return_url,
+            'nonce'      => $nonce,
+        ];
+
+        $state = urlencode( base64_encode( json_encode( $state_array ) ) );
+
+        return $state;
+    }
+
+    /**
      * Defines the auth url.
      * 
      * @since 1.0.0
      */
     public function auth_url() {
-        return 'https://accounts.google.com/o/oauth2/v2/auth?' . http_build_query([
-            'client_id' => $this->client_id,
-            'redirect_uri' => $this->redirect_url,
-            'response_type' => 'code',
-            'scope' => $this->google_scopes,
-            'access_type' => 'offline',
-            'include_granted_scopes' => 'true',
-            'prompt' => 'consent',
-            'state' => wp_create_nonce( 'nextav_google_auth' ),
-        ]);
+
+        // Bypass proxy
+        if ( $this->bypass_proxy ) {
+            return 'https://accounts.google.com/o/oauth2/v2/auth?' . http_build_query([
+                'client_id' => $this->client_id,
+                'redirect_uri' => $this->redirect_url,
+                'response_type' => 'code',
+                'scope' => $this->google_scopes,
+                'access_type' => 'offline',
+                'include_granted_scopes' => 'true',
+                'prompt' => 'consent',
+                'state' => wp_create_nonce( 'nextav_google_auth' ),
+            ]);
+        }
+
+        // Use proxy server
+        $state = $this->build_state();
+        return "https://buddyclients.com/auth/google?state=$state";
     }
 
     /**
@@ -115,23 +214,64 @@ class GoogleCal {
 
         // New Client instance
         $client = new \GriffinVendor\Google\Client();
+        $client->setAccessToken( $token );
 
-        $client->setClientId( $this->client_id );
-        $client->setClientSecret( $this->client_secret );
-        $client->setRedirectUri( $this->redirect_url );
-        $client->setAccessToken($token);
+        // Check if access token is expired
+        if ( $client->isAccessTokenExpired() ) {
 
-        if ($client->isAccessTokenExpired()) {
-            $refresh_token = $client->getRefreshToken();
-            if ($refresh_token) {
-                $client->fetchAccessTokenWithRefreshToken($refresh_token);
-                update_option('nextav_google_tokens', $client->getAccessToken());
-            } else {
-                wp_die('Refresh token missing, please reconnect.');
+            // Make sure we have a refresh token
+            if ( $this->refresh_token ) {
+
+                // Request new token from proxy
+                $new_tokens = $this->refresh_token_via_server( $this->refresh_token );
+
+                    // New token received
+                    if ( $new_tokens && isset( $new_tokens['access_token'] ) ) {
+                        // Save updated tokens locally
+                        update_option( 'nextav_google_tokens', $new_tokens );
+                        $client->setAccessToken( $new_tokens );
+                    } else {
+                        wp_die('Failed to refresh token via server. Please reconnect.');
+                    }
+                } else {
+                    wp_die('Refresh token missing, please reconnect.');
+                }
             }
-        }
         
         return $client;
+    }
+
+    /**
+     * Fetches token via proxy server.
+     * 
+     * Advanced users can connect to their own Google app to avoid phoning home.
+     * 
+     * @since 1.0.0
+     */
+    private function refresh_token_via_server( $refresh_token ) {
+        $remote_url = 'https://buddyclients.com/wp-content/plugins/oauth-proxy/get-token.php';
+        $response = wp_remote_post( $remote_url, [
+            'body' => [
+                'refresh_token' => $refresh_token,
+                'auth_token'    => 'speak_friend', // to prevent abuse
+            ],
+        ]);
+
+        // Check for wp error
+        if ( is_wp_error( $response ) ) {
+            return false;
+        }
+
+        // Decode response
+        $data = json_decode(wp_remote_retrieve_body($response), true);
+
+        // No access token available
+        if ( ! isset( $data['access_token'] ) ) {
+            return false;
+        }
+        
+        // Return access token data
+        return $data;
     }
 
     /**
@@ -204,15 +344,18 @@ class GoogleCal {
         $cache_key = self::date_cache_key();
 
         // Check for cached date
-        $cached = get_option( $cache_key );
+        $cached = get_transient( $cache_key );
         if ( $cached ) return $cached;
 
         // Fetch if no cached
         $date = $this->fetch_date();
+        if ( ! $date ) {
+            return;
+        }
 
-        // Cache fetched
-        update_option( $cache_key, $date );
-        update_option( 'nextav_date_updated', current_time('mysql') );
+        // Cache for 1 day (adjust as needed)
+        set_transient( $cache_key, $date, DAY_IN_SECONDS );
+        set_transient( 'nextav_date_updated', current_time('mysql'), DAY_IN_SECONDS );
 
         return $date;
     }
@@ -223,10 +366,14 @@ class GoogleCal {
      * @since 1.0.0
      */
     public function fetch_date() {
-        $calendar_id = nextav_get_setting('integrations', 'calendar_id');
-        $consecutive_days = nextav_get_setting('general', 'free_days') ?: 7;
 
-        $consecutive_days = 40;
+        $calendar_id = nextav_get_setting('integrations', 'calendar_id');
+
+        if ( empty( $calendar_id ) ) {
+            return;
+        }
+        
+        $consecutive_days = nextav_get_setting('general', 'free_days') ?: 7;
 
         $service = $this->google_service();
         if (!$service) return;

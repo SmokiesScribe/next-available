@@ -5,11 +5,11 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 use NextAv\Includes\GoogleCal;
 
 /**
- * Defines the general settings.
+ * Defines the advanced settings.
  *
  * @since 1.0.25
  */
-class SettingsIntegrations {
+class SettingsAdvanced {
 
     /**
      * Defines default Integrations settings.
@@ -32,68 +32,49 @@ class SettingsIntegrations {
         $redirect_url = $cal->redirect_url;
         $disconnect_url = $cal->disconnect_url;
         return [
-            'google_cal' => [
-                'title' => __( 'Google Account', 'next-available' ),
-                'description' => __( 'Integrate with Google Calendar.', 'next-available' ),
+            'bypass_proxy' => [
+                'title' => __( 'Bypass Proxy Server', 'next-available' ),
+                'description' => __( 'Connect directly to your Google Cloud account to bypass the proxy server.', 'next-available' ),
                 'fields' => [
-                    'google_cal' => [
-                        'label' => __( 'Connected Account', 'next-available' ),
-                        'type' => 'display',
-                        'content' => self::connected_account( $cal ),
-                        'description' => __( '', 'next-available' ),
-                    ],
-                    'google_connect_btns' => [
-                        'label' => __( '', 'next-available' ),
-                        'type' => 'display',
-                        'content' => self::connect_btns( $cal ),
-                        'description' => __( '', 'next-available' ),
-                    ],
-                ],
-            ],
-            'calendars' => [
-                'title' => __( 'Calendars', 'next-available' ),
-                'description' => 'Manage your Google Calendars.',
-                'fields' => [
-                    'calendar_id' => [
-                        'label' => __( 'Google Calendar', 'next-available' ),
+                    'bypass' => [
+                        'label' => __( 'Bypass Proxy', 'next-available' ),
                         'type' => 'dropdown',
-                        'options' => self::cal_list(),
-                        'description' => __( 'Choose the Google Calendar from your connected account.', 'next-available' ),
+                        'options' => [
+                            'no'    => 'Use Proxy (recommended)',
+                            'yes'   => 'Bypass Proxy'
+                        ],
+                        'description' => __( '', 'next-available' ),
+                    ],
+                    'user_google_client_id' => [
+                        'label' => __( 'Client ID', 'next-available' ),
+                        'type' => 'input',
+                        'description' => __( 'Enter your Google client ID.', 'next-available' ),
+                    ],
+                    'user_google_client_secret' => [
+                        'label' => __( 'Client Secret', 'next-available' ),
+                        'type' => 'input',
+                        'description' => __( 'Enter your Google client secret.', 'next-available' ),
+                    ],
+                    'user_google_redirect_uri' => [
+                        'label' => __( 'Client Secret', 'next-available' ),
+                        'type' => 'display',
+                        'content' => self::redirect_url(),
+                        'description' => __( 'Add this url to your list of authorized redirect URLs.', 'next-available' ),
                     ],
                 ],
             ],
-            //'meta' => [
-            //    'title' => __( 'Meta Ads Integration', 'next-available' ),
-            //    'description' => __( 'Set up the API integration to send conversion events to Meta (Facebook).', 'next-available' ),
-            //    'fields' => [
-            //        'meta_access_token' => [
-            //            'label' => __( 'Access Token', 'next-available' ),
-            //            'type' => 'text',
-            //            'description' => __( 'Enter your access token.', 'next-available' ),
-            //        ],
-            //        'meta_pixel_id' => [
-            //            'label' => __( 'Pixel ID', 'next-available' ),
-            //            'type' => 'text',
-            //            'description' => __( 'Enter your pixel ID.', 'next-available' ),
-            //        ],
-            //    ],
-            //],
         ];
     }
 
     /**
-     * Builds the calendar list options.
+     * Outputs the Google auth redirect url.
      * 
      * @since 1.0.0
      */
-    private static function cal_list() {
+    private static function redirect_url() {
         $cal = new GoogleCal;
-        $cal_list = $cal->calendar_list();
-        $empty_option = ! empty( $cal_list ) ? __( '— Select a calendar —', 'next-available' ) : __( '— No calendars available —', 'next-available' );
-        return array_merge(
-            [ '' => $empty_option ],
-            is_array($cal_list) && !empty($cal_list) ? $cal_list : []
-        );
+        $redirect_url = $cal->redirect_url();
+        return "<p><code>$redirect_url</code></p>";
     }
 
     /**

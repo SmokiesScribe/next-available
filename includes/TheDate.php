@@ -29,7 +29,17 @@ class TheDate {
     public function __construct() {
         $cal = new GoogleCal;
         $this->date = $cal->date();
-        $this->updated_date = get_option( 'nextav_date_updated' );
+        $this->updated_date = $this->get_updated_date();
+    }
+
+    /**
+     * Retrieves the date last updated.
+     * 
+     * @since 1.0.0
+     */
+    private function get_updated_date() {
+        if ( ! $this->date ) return;
+        return get_transient( 'nextav_date_updated' );
     }
 
     /**
@@ -39,7 +49,15 @@ class TheDate {
      */
     public function display( $atts ) {
         $format = $this->format( $atts );
-        return self::format_date( $this->date, $format );
+        $date_string = '';
+
+        if ( ! $this->date ) {
+            $date_string = nextav_get_setting( 'general', 'date_fallback' );
+        } else {
+            $date_string = self::format_date( $this->date, $format );
+        }
+
+        return esc_html( $date_string );
     }
 
     /**
@@ -84,7 +102,13 @@ class TheDate {
      * @since 1.0.0
      */
     public function display_updated( $atts = [] ) {
+        if ( ! $this->updated_date ) return;
         $format = $this->format( $atts );
-        return self::format_date( $this->updated_date, $format );
+        $formatted_date = self::format_date( $this->updated_date, $format );
+        return sprintf(
+            '<p>%s %s</p>',
+            esc_html__( 'Updated', 'next-available' ),
+            esc_html( $formatted_date )
+        );
     }
 }

@@ -65,7 +65,13 @@ class AdminPageManager {
                 'title' => __('Integrations', 'next-available'),
                 'parent_slug' => null,
             ],
-            
+            'advanced' => [
+                'key' => 'advanced',
+                'settings' => true,
+                'title' => __('Advanced', 'next-available'),
+                'parent_slug' => null,
+            ],
+
             // Other Pages
             //'email_log' => [
             //    'key' => 'email-log',

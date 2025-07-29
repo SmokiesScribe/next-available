@@ -36,7 +36,6 @@ class Autoloader {
 
         // Vendor class
         if ( strpos( $class, 'GriffinVendor' ) !== false ) {
-            var_dump("Vendor class!");
             return;
         }        
         

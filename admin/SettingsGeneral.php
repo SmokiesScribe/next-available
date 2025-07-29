@@ -24,7 +24,8 @@ class SettingsGeneral {
 
             'free_days'             => 7,
             'date_format'           => 'F j, Y',
-            'update_frequency'      => 3
+            'update_frequency'      => 3,
+            'date_fallback'         => __( 'Contact for availability', 'next-available' )
         ];
     }
     
@@ -68,6 +69,11 @@ class SettingsGeneral {
                             'l, F j, Y' => __('Tuesday, July 1, 2025 (Full weekday)', 'next-available'),
                         ],
                         'description' => __('Choose the default format for the displayed date. (The format can be specified in the shortcode.)', 'next-available'),
+                    ],
+                    'date_fallback' => [
+                        'label' => __('Date Fallback', 'next-available'),
+                        'type' => 'input',
+                        'description' => __('Enter text to display in the event that your Calendar integration fails.', 'next-available'),
                     ],
                 ]
             ],

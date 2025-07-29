@@ -20,6 +20,7 @@ class SettingsRouter {
         $classes = [
             'general'       => SettingsGeneral::class,
             'integrations'  => SettingsIntegrations::class,
+            'advanced'      => SettingsAdvanced::class,
         ];
 
         /**

@@ -31,6 +31,7 @@ class Nav {
             'settings' => [
                 __( 'General', 'nextav' )            => ['page'  => 'nextav-general-settings'],
                 __( 'Integrations', 'nextav' )        => ['page'  => 'nextav-integrations-settings'],
+                __( 'Advanced', 'nextav' )        => ['page'  => 'nextav-advanced-settings']
             ],
         ];
 
