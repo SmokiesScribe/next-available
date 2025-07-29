@@ -1,47 +1,96 @@
 .nextav-admin-wrap {
-    max-width: 800px;
-    padding: 20px;
-}
-
-.nextav-subheading {
-    font-size: 16px;
-    margin-bottom: 20px;
-    color: #555;
-}
-
-.nextav-section {
-    margin-top: 40px;
+    max-width: 820px;
+    margin: 40px auto;
+    padding: 40px 30px;
+    background: #fff;
+    border: 1px solid #e2e4e7;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    font-family: "Segoe UI", Roboto, sans-serif;
+    line-height: 1.7;
+    color: #1e1e1e;
 }
 
 .nextav-admin-title {
-    font-weight: 250;
-    line-height: 1.5;
+    font-size: 34px;
+    font-weight: 600;
+    margin-bottom: 16px;
+    line-height: 1.3;
+    color: #111;
+}
+
+.nextav-subheading,
+.nextav-admin-wrap > p {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 30px;
+}
+
+.nextav-section {
+    margin-top: 50px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+}
+
+.nextav-section:first-of-type {
+    border-top: none;
+    padding-top: 0;
 }
 
 .nextav-section h2,
 .nextav-section h3 {
-    margin-bottom: 10px;
+    margin-bottom: 12px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #222;
+}
+
+.nextav-section p {
+    margin-bottom: 18px;
+}
+
+.nextav-section ol,
+.nextav-section ul {
+    padding-left: 20px;
+    margin: 0 0 16px 0;
+}
+
+.nextav-section li {
+    margin-bottom: 8px;
 }
 
 .nextav-code-block {
-    background: #f7f7f7;
-    border: 1px solid #ddd;
-    padding: 10px;
+    background: #f4f6f8;
+    border: 1px solid #ccd0d4;
+    padding: 10px 14px;
     border-radius: 6px;
     display: inline-block;
-    margin: 6px 0 14px 0;
     font-family: monospace;
+    font-size: 14px;
+    color: #1a1a1a;
+    margin-bottom: 14px;
 }
 
 .nextav-code-list {
     list-style: none;
     padding-left: 0;
+    margin-top: 10px;
 }
 
 .nextav-code-list li {
-    margin: 5px 0;
+    background: #f8f9fa;
+    border: 1px solid #e3e6e8;
+    padding: 8px 12px;
+    border-radius: 6px;
     font-family: monospace;
-    background: #f9f9f9;
-    padding: 6px 10px;
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+code {
+    background-color: #f1f1f1;
+    padding: 2px 4px;
     border-radius: 4px;
+    font-size: 14px;
 }

@@ -22,15 +22,26 @@ Display your next available date from your Google Calendar. Perfect for freelanc
 
 The Next Available plugin connects to external services to display the most up to date information based on your calendars.
 
-### Google Calendar (Optional)
+### Google Calendar
 
 If enabled, the Google Calendar integration is used to retrieve your most up to date calendar information. When the Google Calendar integration is active:
 
-- The user’s IP address and browser information are transmitted to Google for validation.
+- The user’s IP address and browser information may be transmitted to Google as part of the OAuth authentication process.
 - Google may set cookies or track user interactions as outlined in their [Privacy Policy](https://policies.google.com/privacy) and [Terms of Service](https://policies.google.com/terms).
-- reCAPTCHA is used only for form security and does not collect additional user data beyond what is required for spam prevention.
-- Users can enable or disable the reCAPTCHA integration through the plugin settings. When disabled, no data is transmitted to Google.
-- The reCAPTCHA integration is disabled by default.
+- The plugin only accesses calendar data that the user explicitly grants permission to through the Google OAuth consent screen.
+- Users can disconnect their Google account at any time, which revokes access and deletes stored tokens.
+
+### Proxy Server (Optional)
+
+This plugin uses a separate proxy server at https://buddyclients.com to securely manage Google OAuth token exchanges and refreshes. The proxy server:
+
+- Handles all sensitive operations involving the Google client ID and client secret to prevent exposure of these credentials in the plugin or user browsers.
+- Acts as an intermediary between your WordPress site and Google’s OAuth servers, ensuring secure token management.
+- Does not store or log any user personal data beyond what is necessary to facilitate authentication and token refresh.
+- Helps comply with security best practices by isolating sensitive credentials away from the plugin codebase.
+- For more information, see our [Privacy Policy](https://buddyclients.com/nextav-privacy) and [Terms of Service](https://buddyclients.com/terms).
+
+Advanced users can choose to opt out of using the default proxy server and instead configure their own Google API credentials directly within the plugin settings.
 
 == Requirements ==
 

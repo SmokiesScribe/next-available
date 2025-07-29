@@ -9,7 +9,19 @@ if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 function nextav_dashboard_content() {
     ?>
     <div class="nextav-admin-wrap">
-        <h1 class="nextav-admin-title">Display your next available date from your connected calendar.</h1>
+        <h1 class="nextav-admin-title">Display your up-to-date availability automatically.</h1>
+
+        <p>Welcome to Next Available, the easiest way to display your availability for prospective clients.</p>
+
+        <section class="nextav-section">
+            <h2>Quick Start</h2>
+            <ol>
+                <li>Go to <strong>Settings → Integrations</strong>.</li>
+                <li>Connect your Google account and authorize calendar access.</li>
+                <li>Select the calendar you want to use.</li>
+                <li>Paste the <code>[next_available]</code> shortcode into any post, page, or widget.</li>
+            </ol>
+        </section>
 
         <section class="nextav-section">
             <h2>📌 Shortcodes</h2>
@@ -23,12 +35,14 @@ function nextav_dashboard_content() {
         <section class="nextav-section">
             <h3>🛠 Available Parameters</h3>
             <ul>
-                <li><code>format</code> — Optional. PHP date format. Default is <code>F j, Y</code>.</li>
+                <li><code>format</code> — Optional. PHP date format.</li>
+                <li>Modify the default format at <strong>Settings → General</strong>.</li>
             </ul>
         </section>
 
         <section class="nextav-section">
-            <h3>🧪 Examples</h3>
+            <h3>📆 Examples</h3>
+            <p>The following date formats are available.</p>
             <ul class="nextav-code-list">
                 <li><code>[next_available format="Y-m-d"]</code> → 2025-07-01</li>
                 <li><code>[next_available format="m/d/Y"]</code> → 07/01/2025</li>
@@ -41,20 +55,10 @@ function nextav_dashboard_content() {
         </section>
 
         <section class="nextav-section">
-            <h2>⚙️ Setup Instructions</h2>
-            <ol>
-                <li>Go to <strong>Settings → Integrations</strong>.</li>
-                <li>Connect your Google account and authorize calendar access.</li>
-                <li>Select the calendar you want to use.</li>
-                <li>Paste the <code>[next_available]</code> shortcode into any post, page, or widget.</li>
-            </ol>
-        </section>
-
-        <section class="nextav-section">
             <h2>🔍 Notes</h2>
             <ul>
                 <li>The plugin fetches real-time availability from your calendar.</li>
-                <li>You can change the display format using the <code>format</code> parameter.</li>
+                <li>To make setup easy, the plugin routes through our proxy server.<br>Advanced users can bypass the proxy by entering your Google Cloud credentials in <strong>Settings → Advanced</strong>.</li>
             </ul>
         </section>
     </div>
