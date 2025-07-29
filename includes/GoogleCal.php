@@ -345,7 +345,7 @@ class GoogleCal {
 
         // Check for cached date
         $cached = get_transient( $cache_key );
-        if ( $cached ) return $cached;
+       if ( $cached ) return $cached;
 
         // Fetch if no cached
         $date = $this->fetch_date();
