@@ -2,7 +2,7 @@
 namespace NextAv\Includes;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-use NextAv\Includes\TheDate;
+use NextAv\Includes\DisplayDate;
 
 /**
  * Registers plugin shortcodes.
@@ -35,12 +35,12 @@ class Shortcodes {
         $data = [
             'next_available' => [
                 'shortcode' => 'next_available',
-                'class'     => TheDate::class,
+                'class'     => DisplayDate::class,
                 'method'    => 'display'
             ],
             'next_available_updated' => [
                 'shortcode' => 'next_available_updated',
-                'class'     => TheDate::class,
+                'class'     => DisplayDate::class,
                 'method'    => 'display_updated'
             ],
         ];

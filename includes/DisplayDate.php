@@ -2,14 +2,14 @@
 namespace NextAv\Includes;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
-use NextAv\Includes\GoogleCal;
+use NextAv\Includes\NextDate;
 
 /**
  * Displays the next available date.
  * 
  * @since 1.0.0
  */
-class TheDate {
+class DisplayDate {
 
     /**
      * The next available date.
@@ -27,8 +27,8 @@ class TheDate {
      *                          Defaults to the current URL.
      */
     public function __construct() {
-        $cal = new GoogleCal;
-        $this->date = $cal->date();
+        $next_date = new NextDate;
+        $this->date = $next_date->get_date();
         $this->updated_date = $this->get_updated_date();
     }
 

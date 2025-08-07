@@ -12,6 +12,11 @@
     align-items: center;
 }
 
+/* Hide admin notices */
+.nextav-proxy-confirm-fullscreen .notice {
+  display: none;
+}
+
 .nextav-proxy-confirm-wrap {
   max-width: 480px;
   background: #fff;

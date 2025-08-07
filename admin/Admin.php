@@ -3,7 +3,7 @@ namespace NextAv\Admin;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
 use NextAv\Config\AssetManager;
-
+use NextAv\Admin\ConnectionNotice;
 
 /**
  * Admin-specific functionality of the plugin.

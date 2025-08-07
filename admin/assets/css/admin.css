@@ -314,7 +314,7 @@ ul.wp-submenu.wp-submenu-wrap li a[href="nextav-separator"] {
     transform: translateY(-50%); /* Adjust for exact vertical centering */
     width: 40px; /* Adjust size to match the icon's proportions */
     height: 40px;
-    background-image: url('../media/buddyclients-icon-color.png');
+    background-image: url('../media/nextav-icon-color.png');
     background-size: contain; /* Ensure the icon scales properly */
     background-repeat: no-repeat; /* Prevent repeating the background */
     background-position: center; /* Center the background image within the element */

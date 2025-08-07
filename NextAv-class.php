@@ -89,6 +89,16 @@ if ( ! class_exists( 'NextAv' ) ) {
 			if ( ! defined( 'NEXTAV_VENDOR_DIR' ) ) {
 				define( 'NEXTAV_VENDOR_DIR', NEXTAV_PLUGIN_DIR . 'vendor' );
 			}
+
+			// Proxy url
+			if ( ! defined( 'NEXTAV_PROXY_URL' ) ) {
+				define( 'NEXTAV_PROXY_URL', 'https://proxy.buddyclients.com' );
+			}
+
+			// Proxy API key
+			if ( ! defined( 'NEXTAV_PROXY_API_KEY' ) ) {
+				define( 'NEXTAV_PROXY_API_KEY', 'ad7c2ab688b7af474311a45c97898f2c9c85c2d5a4a6864ff6af86c80191c6e7' );
+			}
 		}
     
     	/**
@@ -138,6 +148,9 @@ if ( ! class_exists( 'NextAv' ) ) {
     		
     		// Initialize admin
     		$this->init_admin();
+
+			// Init Google connection
+			$this->init_google_connect();
             
             // Define all hooks
             $this->define_hooks();
@@ -173,7 +186,7 @@ if ( ! class_exists( 'NextAv' ) ) {
             add_action('wp_enqueue_scripts', [$this, 'enqueue_scripts']);
             
             // Shortcodes
-            add_action('wp', [$this, 'register_shortcodes']);        
+            add_action('wp', [$this, 'register_shortcodes']);
         }
     
         /**
@@ -220,6 +233,16 @@ if ( ! class_exists( 'NextAv' ) ) {
          */
         public function require_helpers() {
             $this->enqueue_assets('includes/helpers');
+        }
+
+        /**
+         * Initiates Google connection.
+         *
+         * @since 1.0.0
+         */
+        public function init_google_connect() {
+            $connection = new NextAv\Includes\GoogleConnectionManager();
+			$connection->init();
         }
         
         /**

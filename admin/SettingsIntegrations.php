@@ -2,6 +2,7 @@
 namespace NextAv\Admin;
 if ( ! defined( 'ABSPATH' ) ) exit; // Exit if accessed directly
 
+use NextAv\Includes\GoogleAuthManager;
 use NextAv\Includes\GoogleCal;
 
 /**
@@ -28,9 +29,9 @@ class SettingsIntegrations {
      * @since 1.0.25
      */
     public static function settings() {
+        $auth_manager = new GoogleAuthManager;
         $cal = new GoogleCal;
-        $redirect_url = $cal->redirect_url;
-        $disconnect_url = $cal->disconnect_url;
+
         return [
             'google_cal' => [
                 'title' => __( 'Google Account', 'next-available' ),
@@ -45,7 +46,7 @@ class SettingsIntegrations {
                     'google_connect_btns' => [
                         'label' => __( '', 'next-available' ),
                         'type' => 'display',
-                        'content' => self::connect_btns( $cal ),
+                        'content' => self::connect_btns( $auth_manager, $cal ),
                         'description' => __( '', 'next-available' ),
                     ],
                 ],
@@ -61,23 +62,7 @@ class SettingsIntegrations {
                         'description' => __( 'Choose the Google Calendar from your connected account.', 'next-available' ),
                     ],
                 ],
-            ],
-            //'meta' => [
-            //    'title' => __( 'Meta Ads Integration', 'next-available' ),
-            //    'description' => __( 'Set up the API integration to send conversion events to Meta (Facebook).', 'next-available' ),
-            //    'fields' => [
-            //        'meta_access_token' => [
-            //            'label' => __( 'Access Token', 'next-available' ),
-            //            'type' => 'text',
-            //            'description' => __( 'Enter your access token.', 'next-available' ),
-            //        ],
-            //        'meta_pixel_id' => [
-            //            'label' => __( 'Pixel ID', 'next-available' ),
-            //            'type' => 'text',
-            //            'description' => __( 'Enter your pixel ID.', 'next-available' ),
-            //        ],
-            //    ],
-            //],
+            ]
         ];
     }
 
@@ -112,13 +97,14 @@ class SettingsIntegrations {
      * 
      * @since 1.0.0
      * 
-     * @param   GoogleCal   $cal    The GoogleCal instance.
+     * @param   GoogleAuthManager   $auth_manager    The GoogleAuthManager instance.
+     * @param   GoogleCal           $cal             The GoogleCale instance.
      */
-    private static function connect_btns( $cal ) {
+    private static function connect_btns( $auth_manager, $cal ) {
         if ( $cal->primary_name() ) {
-            return self::disconnect_btn( $cal );
+            return self::disconnect_btn( $auth_manager->disconnect_url );
         } else {
-            return self::connect_btn( $cal );
+            return self::connect_btn( $auth_manager->connect_url );
         }
     }
 
@@ -127,12 +113,11 @@ class SettingsIntegrations {
      * 
      * @since 1.0.0
      * 
-     * @param   GoogleCal   $cal    The GoogleCal instance.
+     * @param   string   $connect_url    The redirect url to connect to Google.
      */
-    private static function connect_btn( $cal ) {
-        $redirect_url = $cal->redirect_url;
+    private static function connect_btn( $connect_url ) {
         $text = __( 'Connect Google Account', 'next-available');
-        return self::admin_btn( $redirect_url, $text, 'primary' );
+        return self::admin_btn( $connect_url, $text, 'primary' );
     }
 
     /**
@@ -140,15 +125,11 @@ class SettingsIntegrations {
      * 
      * @since 1.0.0
      * 
-     * @param   GoogleCal   $cal    The GoogleCal instance.
+     * @param   string   $disconnect_url    The redirect url to disconnect to Google.
      */
-    private static function disconnect_btn( $cal ) {
-        // Make sure an account is connected
-        if ( $cal->primary_name() ) {
-            $disconnect_url = $cal->disconnect_url;
-            $text = __( 'Disconnect Account', 'next-available');
-            return self::admin_btn( $disconnect_url, $text, 'secondary' );
-        }
+    private static function disconnect_btn( $disconnect_url ) {
+        $text = __( 'Disconnect Account', 'next-available');
+        return self::admin_btn( $disconnect_url, $text, 'secondary' );
     }
 
     /**
