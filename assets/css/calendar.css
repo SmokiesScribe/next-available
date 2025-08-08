@@ -1,0 +1,104 @@
+.month-calendar {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  width: 100%;
+  max-width: 960px;
+  margin: 2rem auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
+  background: #fff;
+  user-select: none;
+}
+
+.calendar-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  background: #f0f2f5;
+  color: #333;
+  text-align: center;
+  font-weight: 600;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 14px;
+}
+
+.calendar-header div {
+  padding: 12px 0;
+  border-right: 1px solid #eaeaea;
+}
+
+.calendar-body {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  grid-auto-rows: 120px;
+  gap: 1px;
+  position: relative;
+  background: #e5e5e5;
+}
+
+.day-cell {
+  background: #fff;
+  padding: 8px;
+  border: 1px solid #f1f1f1;
+  box-sizing: border-box;
+  position: relative;
+  transition: background 0.2s;
+}
+
+.day-cell:hover {
+  background: #fafafa;
+}
+
+.date-number {
+  font-size: 13px;
+  font-weight: 600;
+  color: #444;
+  margin-bottom: 6px;
+  position: relative;
+  z-index: 10;
+}
+
+.event-bar {
+  position: absolute;
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 6px;
+  color: #fff;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  z-index: 20;
+  cursor: pointer;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.08);
+  user-select: none;
+  height: 28px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  top: 40px;
+}
+
+.cal-nav-button {
+  background: #f7f9fa;
+  border: 1px solid #dcdfe3;
+  padding: 8px 16px;
+  text-decoration: none;
+  border-radius: 6px;
+  color: #333;
+  font-weight: 500;
+  margin: 10px;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+}
+
+.cal-nav-button:hover {
+  background: #e9eff4;
+  border-color: #cbd4dc;
+  color: #000;
+}
+
+.cal-nav-button.disabled {
+    pointer-events: none;
+    color: #ccc;
+    text-decoration: none;
+}

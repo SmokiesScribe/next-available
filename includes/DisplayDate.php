@@ -47,7 +47,7 @@ class DisplayDate {
      * 
      * @since 1.0.0
      */
-    public function display( $atts ) {
+    public function display( $atts = [] ) {
         $format = $this->format( $atts );
         $date_string = '';
 
@@ -105,6 +105,9 @@ class DisplayDate {
         if ( ! $this->updated_date ) return;
         $format = $this->format( $atts );
         $formatted_date = self::format_date( $this->updated_date, $format );
+        if ( isset( $atts['date_only'] ) && $atts['date_only'] ) {
+            return $formatted_date;
+        }
         return sprintf(
             '<p>%s %s</p>',
             esc_html__( 'Updated', 'next-available' ),

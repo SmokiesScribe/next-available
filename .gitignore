@@ -20,3 +20,6 @@ package-lock.json
 
 # Hashes
 /config/.hashes.json
+
+# Roadmap
+ROADMAP.md

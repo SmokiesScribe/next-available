@@ -1,0 +1,44 @@
+{
+  "apiVersion": 2,
+  "name": "nextav/date-block",
+  "title": "Next Available Date",
+  "category": "widgets",
+  "icon": "calendar",
+  "editorScript": "nextav-date-block-editor",
+  "attributes": {
+    "title": {
+      "type": "string",
+      "default": ""
+    },
+    "showUpdatedDate": {
+      "type": "boolean",
+      "default": true
+    },
+    "dateFormat": {
+      "type": "string",
+      "default": "F j, Y"
+    },
+    "style": {
+        "type": "string",
+        "default": "simple"
+    },
+    "nextDate": {
+        "type": "string",
+        "default": ""
+    },
+    "updatedDate": {
+        "type": "string",
+        "default": ""
+    },
+    "availableDateLabel": {
+        "type": "string",
+        "default": "Next Available:"
+    },
+    "updatedDateLabel": {
+        "type": "string",
+        "default": "Last Updated:"
+    }
+  },
+  "edit": "edit",
+  "save": "save"
+}

@@ -33,15 +33,20 @@ class Shortcodes {
      */
     public static function shortcodes_data() {
         $data = [
-            'next_available' => [
-                'shortcode' => 'next_available',
+            'nextav_date' => [
+                'shortcode' => 'nextav_date',
                 'class'     => DisplayDate::class,
                 'method'    => 'display'
             ],
-            'next_available_updated' => [
-                'shortcode' => 'next_available_updated',
+            'nextav_date_updated' => [
+                'shortcode' => 'nextav_date_updated',
                 'class'     => DisplayDate::class,
                 'method'    => 'display_updated'
+            ],
+            'nextav_calendar' => [
+                'shortcode' => 'nextav_calendar',
+                'class'     => DisplayCalendar::class,
+                'method'    => 'display'
             ],
         ];
 

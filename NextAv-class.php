@@ -151,6 +151,9 @@ if ( ! class_exists( 'NextAv' ) ) {
 
 			// Init Google connection
 			$this->init_google_connect();
+
+			// Initialize the Gutenberg Block
+			$this->init_block();
             
             // Define all hooks
             $this->define_hooks();
@@ -244,6 +247,15 @@ if ( ! class_exists( 'NextAv' ) ) {
             $connection = new NextAv\Includes\GoogleConnectionManager();
 			$connection->init();
         }
+
+		/**
+		 * Initializes the Gutenberg block.
+		 * 
+		 * @since 1.0.0
+		 */
+		public function init_block() {
+			new NextAv\Includes\DateBlock;
+		}
         
         /**
          * Registers shortcodes.
