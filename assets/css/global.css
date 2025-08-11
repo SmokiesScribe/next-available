@@ -2,150 +2,150 @@
 .opacity-0 {
     opacity: 0;
 }
-.buddyc-hidden {
+.nextav-hidden {
     display: none;
 }
-.buddyc-visible {
+.nextav-visible {
     display: block;
 }
 
 /* Max width */
-.buddyc-max-650 {
+.nextav-max-650 {
     max-width: 650px;
     margin: auto;
 }
-.buddyc-max-800 {
+.nextav-max-800 {
     max-width: 800px;
     margin: auto;
 }
-.buddyc-max-1000 {
+.nextav-max-1000 {
     max-width: 1000px;
     margin: auto;
 }
-.buddyc-max-1200 {
+.nextav-max-1200 {
     max-width: 1200px;
     margin: auto;
 }
 
 /* Spacers */
-.buddyc-spacer-20 {
+.nextav-spacer-20 {
     height: 20px;
 }
 
 /* Text */
-.buddyc-text-center {
+.nextav-text-center {
     text-align: center;
 }
-.buddyc-font-small {
+.nextav-font-small {
     font-size: 11px;
 }
-.buddyc-font-med {
+.nextav-font-med {
     font-size: 15px;
 }
-.buddyc-font-large {
+.nextav-font-large {
     font-size: 18px;
 }
-.buddyc-text-red {
+.nextav-text-red {
     color: red;
 }
-.buddyc-text-bold {
+.nextav-text-bold {
     font-weight: bold;
 }
 
 /* Margins */
-.buddyc-top-margin-small {
+.nextav-top-margin-small {
     margin-top: 10px;
 }
-.buddyc-top-margin-med {
+.nextav-top-margin-med {
     margin-top: 30px;
 }
-.buddyc-top-margin-large {
+.nextav-top-margin-large {
     margin-top: 80px;
 }
-.buddyc-bot-margin-small {
+.nextav-bot-margin-small {
     margin-bottom: 10px;
 }
-.buddyc-bot-margin-med {
+.nextav-bot-margin-med {
     margin-bottom: 30px;
 }
-.buddyc-bot-margin-large {
+.nextav-bot-margin-large {
     margin-bottom: 80px;
 }
 
-.buddyc-margin-20 {
+.nextav-margin-20 {
     margin: 20px;
 }
 
 /* Lists */
-.buddyc-no-list {
+.nextav-no-list {
     list-style: none;
     padding: 0;
 }
 
 /* Boxed */
-.buddyc-box {
+.nextav-box {
     margin: auto;
     background-color: #fff;
-    border: var(--buddyclients-default-border);
+    border: var(--nextavlients-default-border);
     margin-bottom: 20px;
     padding: 30px;
     border-radius: 15px;
 }
 
 /* Tag label */
-.buddyc-tag-label {
-    background-color: var(--buddyclients-primary-color);
+.nextav-tag-label {
+    background-color: var(--nextavlients-primary-color);
     color: #fff;
     padding: 2px 10px;
     border-radius: 5px;
     font-size: 12px;
     display: inline-block;
 }
-.buddyc-tag-label.tag-0 {
-    background-color: var(--buddyclients-primary-color);
+.nextav-tag-label.tag-0 {
+    background-color: var(--nextavlients-primary-color);
 }
-.buddyc-tag-label.tag-1 {
-    background-color: var(--buddyclients-accent-color);
+.nextav-tag-label.tag-1 {
+    background-color: var(--nextavlients-accent-color);
 }
-.buddyc-tag-label.tag-2 {
-    background-color: var(--buddyclients-tertiary-color);
+.nextav-tag-label.tag-2 {
+    background-color: var(--nextavlients-tertiary-color);
 }
 /* Dynamically adjusted colors */
-.buddyc-tag-label.tag-3 {
-    background-color: var(--buddyclients-primary-color);
+.nextav-tag-label.tag-3 {
+    background-color: var(--nextavlients-primary-color);
     filter: brightness(1.2);
 }
-.buddyc-tag-label.tag-4 {
-    background-color: var(--buddyclients-accent-color);
+.nextav-tag-label.tag-4 {
+    background-color: var(--nextavlients-accent-color);
     filter: brightness(1.2);
 }
-.buddyc-tag-label.tag-5 {
-    background-color: var(--buddyclients-tertiary-color);
+.nextav-tag-label.tag-5 {
+    background-color: var(--nextavlients-tertiary-color);
     filter: brightness(1.2);
 }
-.buddyc-tag-label.tag-6 {
-    background-color: var(--buddyclients-primary-color);
+.nextav-tag-label.tag-6 {
+    background-color: var(--nextavlients-primary-color);
     filter: brightness(0.8);
 }
-.buddyc-tag-label.tag-7 {
-    background-color: var(--buddyclients-accent-color);
+.nextav-tag-label.tag-7 {
+    background-color: var(--nextavlients-accent-color);
     filter: brightness(0.8);
 }
-.buddyc-tag-label.tag-8 {
-    background-color: var(--buddyclients-tertiary-color);
+.nextav-tag-label.tag-8 {
+    background-color: var(--nextavlients-tertiary-color);
     filter: brightness(0.8);
 }
 
 
 /* Button Container */
-.buddyc-btn-container {
+.nextav-btn-container {
     display: flex; /* Flex layout for consistent spacing */
     gap: 20px; /* Adds spacing between multiple buttons */
     margin: 40px auto;
 }
 
 /* Buttons */
-.buddyc-btn {
+.nextav-btn {
     padding: 10px;
     border-radius: 5px;
     text-decoration: none;
@@ -154,116 +154,116 @@
     margin: 0; /* Resets any unwanted margin */
     font-weight: 600;
 }
-.buddyc-btn:hover {
+.nextav-btn:hover {
     filter: brightness(115%); /* Slightly brighten */
     opacity: 0.9; /* Subtle transparency */
     transform: translateY(-2px); /* Slightly lifts the button */
     box-shadow: 0px 4px 6px rgba(0, 0, 0.1, 0.1); /* Adds a gentle shadow */
 }
-.buddyc-btn.small {
+.nextav-btn.small {
     padding: 5px 10px;
     font-size: 12px;
 }
-.buddyc-btn.medium {
+.nextav-btn.medium {
     padding: 12px;
     font-size: 16px;
 }
-.buddyc-btn.large {
+.nextav-btn.large {
     padding: 18px;
     font-size: 18px;
 }
-.buddyc-btn.wide {
+.nextav-btn.wide {
     padding: 12px 50px;
     font-size: 16px;
 }
-.buddyc-btn.primary {
-    background-color: var(--buddyclients-primary-color);
+.nextav-btn.primary {
+    background-color: var(--nextavlients-primary-color);
     border: none;
     color: #fff;
 }
-.buddyc-btn.secondary {
-    background-color: var(--buddyclients-accent-color);
+.nextav-btn.secondary {
+    background-color: var(--nextavlients-accent-color);
     border: none;
     color: #fff;
 }
-.buddyc-btn.outline {
-    color: var(--buddyclients-tertiary-color);
-    border: solid 1.5px var(--buddyclients-tertiary-color);
+.nextav-btn.outline {
+    color: var(--nextavlients-tertiary-color);
+    border: solid 1.5px var(--nextavlients-tertiary-color);
 }
 
 /* Background overlay */
-#buddyc-overlay {
+#nextav-overlay {
     position: fixed;  /* Fixed position to cover the entire viewport */
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: var(--buddyclients-primary-overlay);
+    background-color: var(--nextavlients-primary-overlay);
     z-index: 999;  /* Make sure it's behind the popup */
     display: none;
 }
 
 /* Breadcrumbs */
-.buddyc-breadcrumbs {
+.nextav-breadcrumbs {
     margin: 0 8px;
     font-size: 12px;
 }
 
 /* Profile extensions */
-.buddyc-files-cancel-container {
+.nextav-files-cancel-container {
     max-width: 650px;
     margin: auto; 
 }
-.buddyc-files-cancel {
+.nextav-files-cancel {
     color: red;
 }
 
 /* General icons */
-.buddyc-icon {
+.nextav-icon {
     font-size: 20px;
 }
-.buddyc-icon.buddyc-icon-color-blue {
+.nextav-icon.nextav-icon-color-blue {
     color: blue;
 }
-.buddyc-icon.buddyc-icon-color-black {
+.nextav-icon.nextav-icon-color-black {
     color: black;
 }
-.buddyc-icon.buddyc-icon-color-green {
+.nextav-icon.nextav-icon-color-green {
     color: green;
 }
-.buddyc-icon.buddyc-icon-color-red {
+.nextav-icon.nextav-icon-color-red {
     color: red;
 }
-.buddyc-icon.buddyc-icon-color-gray {
+.nextav-icon.nextav-icon-color-gray {
     color: gray;
 }
-.buddyc-icon.bb-icon-class {
+.nextav-icon.bb-icon-class {
     font-size: 20px;
 }
-.buddyc-icon.fa-icon-class {
+.nextav-icon.fa-icon-class {
     font-size: 16px;
 }
-.buddyc-icon.admin-info {
+.nextav-icon.admin-info {
     margin-right: 10px;
     color: #7face1;
 }
 
 /* Admin notice icon colors */
-.buddyc-icon.buddyc-icon-color-admin-blue {
+.nextav-icon.nextav-icon-color-admin-blue {
     color: #7face1;
 }
-.buddyc-icon.buddyc-icon-color-admin-green {
+.nextav-icon.nextav-icon-color-admin-green {
     color: #48a13e;
 }
-.buddyc-icon.buddyc-icon-color-admin-orange {
+.nextav-icon.nextav-icon-color-admin-orange {
     color: #d3a83e;
 }
-.buddyc-icon.buddyc-icon-color-admin-red {
+.nextav-icon.nextav-icon-color-admin-red {
     color: #c5443f;
 }
 
 /* Subnav */
-.buddyc-subnav {
+.nextav-subnav {
     margin-right: 20px;
 }
 /* Copy Paste Field */
@@ -274,18 +274,18 @@
     color: gray;
     cursor: pointer;
 }
-.buddyc-copy-success {
+.nextav-copy-success {
     font-size: 14px;
     font-weight: 500;
     margin: 10px
 }
-.buddyc-copy-reference {
+.nextav-copy-reference {
     display: none;
 }
-.buddyc-copy-input {
+.nextav-copy-input {
     max-width: 100%;
 }
-.buddyc-copy-success {
+.nextav-copy-success {
     margin: 10px;
     font-weight: 500;
 }
@@ -293,7 +293,7 @@
 .archive-title-container {
     margin-top: 30px;
 }
-.buddyc-archive-container {
+.nextav-archive-container {
     margin: 10px;
     max-width: 1400px;
     padding: 0 10px;
@@ -303,13 +303,13 @@
     max-width: 150px;
     padding: 5px;
     background-color: #fafbfd;
-    color: var(--buddyclients-tertiary-color);
-    border-color: var(--buddyclients-tertiary-color);
+    color: var(--nextavlients-tertiary-color);
+    border-color: var(--nextavlients-tertiary-color);
     font-size: 12px;
 }
 
 /* Description Checkbox */
-.buddyc_description_checkbox + label {
+.nextav_description_checkbox + label {
     color: gray;
     font-size: 15px;
 }
@@ -327,17 +327,17 @@
 
 /* On-Screen Notification Edge Color */
 .bb-onscreen-notification-enable .bb-onscreen-notification .notification-list .read-item.recent-item:before {
-    background: var(--buddyclients-accent-color);
+    background: var(--nextavlients-accent-color);
 }
 
 /* Forms */
-.buddyc-form .description {
+.nextav-form .description {
     color: #8F9091;
     font-size: 14px;
     margin-bottom: 10px;
 }
 
-.buddyc-form-container {
+.nextav-form-container {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -346,21 +346,21 @@
     width: 100%
 }
 
-.buddyc-form {
+.nextav-form {
     width: 100%;
 }
 
-.buddyc-form input[type="submit"]:disabled {
+.nextav-form input[type="submit"]:disabled {
     background-color: gray;
     cursor: not-allowed;
 }
 
-.buddyc-form legend {
-    color: var(--buddyclients-primary-color);
+.nextav-form legend {
+    color: var(--nextavlients-primary-color);
     font-size: 18px;
 }
 
-.buddyc-form fieldset {
+.nextav-form fieldset {
     border: none;
     padding: 0;
     width: 100%;
@@ -373,22 +373,22 @@
 }
 
 /* Hide default checkbox */
-.buddyc-form input[type="checkbox"] {
+.nextav-form input[type="checkbox"] {
     opacity: 0;
     display: none;
 }
 
-.buddyc-form .form-group {
+.nextav-form .form-group {
     padding: 15px 0;
 }
 
-.buddyc-form textarea,
-.buddyc-form .form-group input,
-.buddyc-form .form-group select {
+.nextav-form textarea,
+.nextav-form .form-group input,
+.nextav-form .form-group select {
     width: 100%;
 }
 
-.buddyc-form.buddyc-table-form .form-group {
+.nextav-form.nextav-table-form .form-group {
     padding: 3px;
 }
 
@@ -406,26 +406,26 @@
 }
 
 /* User profile */
-.buddyc-form-user-profile {
+.nextav-form-user-profile {
     display: flex;
     align-items: center;
-    border-bottom: var(--buddyclients-default-border);
+    border-bottom: var(--nextavlients-default-border);
     padding: 20px;
     max-width: 500px;
 }
 
-.buddyc-form-user-avatar {
+.nextav-form-user-avatar {
     margin-right: 10px;
     margin-left: 20px;
 }
 
-.buddyc-form-user-avatar img {
+.nextav-form-user-avatar img {
     border-radius: 50%;
 }
 
-.buddyc-form-user-name {
+.nextav-form-user-name {
     font-weight: bold;
-    color: var(--buddyclients-primary-color);
+    color: var(--nextavlients-primary-color);
 }
 
 /* File upload */
@@ -445,15 +445,15 @@
 /* Block Quote */
 .wp-block-quote {
     background-color: #ffffff !important;
-    border: var(--buddyclients-default-border);
+    border: var(--nextavlients-default-border);
 }
 .wp-block-quote:before {
-    background-color: var(--buddyclients-accent-color) !important;
+    background-color: var(--nextavlients-accent-color) !important;
 }
 
 /* ALERT BAR */
 .custom-alert-bar {
-    background-color: var(--buddyclients-primary-color);
+    background-color: var(--nextavlients-primary-color);
     color: #ffffff;
     text-align: center;
     padding: 20px;
@@ -477,11 +477,11 @@
 }
 
 /* Signature */
-.buddyc-legal-signature {
+.nextav-legal-signature {
     max-width: 300px;
 }
 
-.buddyc-signature-container canvas {
+.nextav-signature-container canvas {
     margin: 10px 0;
     background-color: var(--bb-content-background-color);
     border: 1px solid var(--bb-content-border-color);
@@ -491,7 +491,7 @@
     color: var(--bb-body-text-color);
 }
 
-.form-group.buddyc-signature-container .buddyc-signature-clear-button {
+.form-group.nextav-signature-container .nextav-signature-clear-button {
     background-color: #fff;
     color: gray;
     border: 1px solid gray;

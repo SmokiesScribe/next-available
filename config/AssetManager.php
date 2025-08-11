@@ -303,32 +303,7 @@ class AssetManager {
 	private static function localization_info( $file_name ) {
 
 		switch ( $file_name ) {
-			case 'password-field':
-				return [
-					'eyeClass' => nextav_icon_class( 'eye' ),
-					'eyeSlashClass' => nextav_icon_class( 'eye-slash' )
-				];
-			case 'lead-gen':
-				if ( function_exists( 'nextav_lead_gen_info' ) ) {
-					return nextav_lead_gen_info();
-				}
-			case 'recaptcha':
-				if ( function_exists( 'nextav_recaptcha_site_key' ) ) {
-					return ['siteKey' => nextav_recaptcha_site_key()];
-				}
-			case 'header-button':
-				if ( function_exists( 'nextav_header_btn_info' ) ) {
-					return nextav_header_btn_info();
-				}
-			case 'email-entered':
-			case 'help-popup':
-			case 'create-account':
-			case 'booking-form':
-			case 'service-fields':
-			case 'create-project-fields':
-			case 'search':
-			case 'create-page':
-			case 'admin-create-legal':
+			case 'calendar-nav':
 				return [];
 		}
 	}
@@ -349,6 +324,9 @@ class AssetManager {
 			$localization_info['nonce'] = wp_create_nonce( $this->build_nonce_action( $file_name ) );
 			$localization_info['nonceAction'] = $this->build_nonce_action( $file_name );
 			$localization_info['fileName'] = $file_name;
+
+			// Add ajax url
+			$localization_info['ajaxurl'] = admin_url('admin-ajax.php');
 
 			// Localize and pass data
 			$data_name = $this->build_data_name( $file_name );

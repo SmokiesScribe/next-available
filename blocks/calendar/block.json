@@ -1,0 +1,40 @@
+{
+  "apiVersion": 2,
+  "name": "nextav/calendar-block",
+  "title": "Next Available Calendar",
+  "category": "widgets",
+  "icon": "calendar",
+  "editorScript": "nextav-calendar-block-editor",
+  "attributes": {
+    "style": {
+      "type": "string",
+      "default": "simple"
+    },
+    "showEventName": {
+      "type": "boolean",
+      "default": true
+    },
+    "showEventDetails": {
+      "type": "boolean",
+      "default": true
+    },
+    "colorEvents": {
+      "type": "boolean",
+      "default": true
+    },
+    "highlightAvailable": {
+      "type": "boolean",
+      "default": true
+    },
+    "showPast": {
+      "type": "boolean",
+      "default": false
+    },
+    "includeWeekends": {
+      "type": "boolean",
+      "default": true
+    }
+  },
+  "edit": "edit",
+  "save": "save"
+}

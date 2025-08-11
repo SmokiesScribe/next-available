@@ -1,4 +1,4 @@
-.month-calendar {
+.nextav-month-calendar {
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   width: 100%;
   max-width: 960px;
@@ -10,23 +10,25 @@
   user-select: none;
 }
 
-.calendar-header {
+.nextav-calendar-header {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   background: #f0f2f5;
   color: #333;
   text-align: center;
-  font-weight: 600;
+  font-weight: 575;
   border-bottom: 1px solid #e0e0e0;
-  font-size: 14px;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
-.calendar-header div {
+.nextav-calendar-header div {
   padding: 12px 0;
   border-right: 1px solid #eaeaea;
 }
 
-.calendar-body {
+.nextav-calendar-body {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
   grid-auto-rows: 120px;
@@ -35,7 +37,7 @@
   background: #e5e5e5;
 }
 
-.day-cell {
+.nextav-day-cell {
   background: #fff;
   padding: 8px;
   border: 1px solid #f1f1f1;
@@ -44,11 +46,11 @@
   transition: background 0.2s;
 }
 
-.day-cell:hover {
+.nextav-day-cell:hover {
   background: #fafafa;
 }
 
-.date-number {
+.nextav-date-number {
   font-size: 13px;
   font-weight: 600;
   color: #444;
@@ -57,7 +59,7 @@
   z-index: 10;
 }
 
-.event-bar {
+.nextav-event-bar {
   position: absolute;
   font-size: 13px;
   padding: 4px 10px;
@@ -70,7 +72,7 @@
   cursor: pointer;
   box-shadow: 0 2px 5px rgba(0,0,0,0.08);
   user-select: none;
-  height: 28px;
+  height: 20px;
   line-height: 20px;
   display: flex;
   align-items: center;
@@ -78,7 +80,7 @@
   top: 40px;
 }
 
-.cal-nav-button {
+.nextav-cal-nav-button {
   background: #f7f9fa;
   border: 1px solid #dcdfe3;
   padding: 8px 16px;
@@ -91,14 +93,81 @@
   box-shadow: 0 2px 4px rgba(0,0,0,0.03);
 }
 
-.cal-nav-button:hover {
+.nextav-cal-nav-button:hover {
   background: #e9eff4;
   border-color: #cbd4dc;
   color: #000;
 }
 
-.cal-nav-button.disabled {
+.nextav-cal-nav-button.disabled {
     pointer-events: none;
     color: #ccc;
     text-decoration: none;
+}
+.nextav-day-cell.highlight-available {
+    background: linear-gradient(135deg, #fff9c4, #fff59d);
+    border: 2px solid #fbc02d;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(251, 192, 45, 0.3);
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+
+.nextav-day-cell.next-available-day {
+    border: 2px solid #1e88e5;
+    background: #bbdefb;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(30, 136, 229, 0.3);
+    position: relative;
+}
+
+.nextav-calendar-contact-button {
+    background-color: #1e88e5;
+    color: #fff;
+    border: none;
+    padding: 6px 12px;
+    font-weight: 600;
+    border-radius: 10px;
+    cursor: pointer;
+    box-shadow: 0 4px 8px rgba(30, 136, 229, 0.4);
+    transition: background-color 0.25s ease, box-shadow 0.25s ease;
+    font-size: 0.9rem;
+    margin-top: 8px;
+    display: inline-block;
+}
+
+.nextav-calendar-contact-button:hover {
+    background-color: #1565c0;
+    box-shadow: 0 6px 14px rgba(21, 101, 192, 0.6);
+}
+
+.nextav-available-badge {
+    position: absolute;
+    top: 5px;
+    left: 35px;
+    background-color: #ff9800; /* Bright, attention-grabbing color */
+    color: #fff;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 6px;
+    border-radius: 3px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    z-index: 10;
+    margin-right: 5px;
+}
+
+/** Hide badge and contact on mobile **/
+@media (max-width: 600px) {
+    .nextav-calendar-contact-button,
+    .nextav-available-badge {
+        display: none !important;
+    }
+}
+
+.nextav-more-events-note {
+    font-weight: 600;
+    color: #666;
+    margin-top: 3px;
 }

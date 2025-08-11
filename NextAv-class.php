@@ -152,8 +152,8 @@ if ( ! class_exists( 'NextAv' ) ) {
 			// Init Google connection
 			$this->init_google_connect();
 
-			// Initialize the Gutenberg Block
-			$this->init_block();
+			// Initialize the Gutenberg Blocks
+			$this->init_blocks();
             
             // Define all hooks
             $this->define_hooks();
@@ -253,8 +253,8 @@ if ( ! class_exists( 'NextAv' ) ) {
 		 * 
 		 * @since 1.0.0
 		 */
-		public function init_block() {
-			new NextAv\Includes\DateBlock;
+		public function init_blocks() {
+			new NextAv\Includes\Blocks;
 		}
         
         /**

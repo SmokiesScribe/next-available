@@ -9,7 +9,7 @@ use NextAv\Includes\DisplayDate;
  * 
  * @since 1.0.0
  */
-class DateBlock {
+class BlockDate {
 
     /**
      * The path to the directory where the block info lives.
@@ -26,46 +26,12 @@ class DateBlock {
     private $block_url;
 
     /**
-     * Constructor. Defines hooks.
+     * Constructor.
      * 
      * @since 1.0.0
      */
     public function __construct() {
-        $this->block_dir = NEXTAV_PLUGIN_DIR . '/blocks/date-block';
-        $this->block_url = NEXTAV_PLUGIN_URL . '/blocks/date-block';
-        add_action( 'init', [ $this, 'register_block' ] );
-    }
-
-    /**
-     * Registers the block.
-     * 
-     * @since 1.0.0
-     */
-    public function register_block() {        
-        if ( ! is_dir( $this->block_dir ) ) return;
-
-        // Register the script
-        $this->register_script();
-
-        // Register the block
-        register_block_type( $this->block_dir, [
-            'render_callback' => [ $this, 'render_date_block' ],
-        ] );
-    }
-
-    /**
-     * Registers the script.
-     * 
-     * @since 1.0.0
-     */
-    private function register_script() {
-        // Register block editor script
-        wp_register_script(
-            'nextav-date-block-editor',
-            $this->block_url . '/index.js', // use the URL here
-            [ 'wp-blocks', 'wp-element', 'wp-editor', 'wp-components', 'wp-i18n' ],
-            filemtime( $this->block_dir . '/index.js' ) // version based on file modified time
-        );
+        // Constructor logic
     }
 
     /**
