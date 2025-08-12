@@ -29,6 +29,20 @@ class NextDate {
     private $consecutive_days;
 
     /**
+     * Whether to include weekends.
+     * 
+     * @var bool
+     */
+    private $include_weekends;
+
+    /**
+     * The number of events to allow per day.
+     * 
+     * @var int
+     */
+    private $events_per_day;
+
+    /**
      * Constructor method.
      * 
      * @since 1.0.0
@@ -36,6 +50,8 @@ class NextDate {
     public function __construct() {
         $this->google_cal = new GoogleCal;
         $this->consecutive_days = nextav_get_setting( 'general', 'free_days' ) ?: 7;
+        $this->include_weekends = nextav_get_setting( 'general', 'include_weekends' ) === 'yes';
+        $this->events_per_day = nextav_get_setting( 'general', 'events_per_day' ) ?? 1;
     }
 
     /**
@@ -63,6 +79,9 @@ class NextDate {
      */
     public function get_date() {
         $cache_key = self::date_cache_key();
+
+        // DELETE CACHE - TESTING
+        delete_transient( $cache_key );
 
         // Check for cached date
         $cached = get_transient( $cache_key );
@@ -133,9 +152,7 @@ class NextDate {
 
     /**
      * Retrieves all busy days in a one-year window starting from $start.
-     * 
-     * Queries the Google Calendar API to retrieve all events
-     * and records each day that is occupied by an event as a "busy" day.
+     * Counts events per day, marks day busy if event count >= $this->events_per_day.
      * 
      * @since 1.0.0
      */
@@ -144,7 +161,7 @@ class NextDate {
         $timeMin = clone $start;
         $timeMax = ( clone $start )->modify( '+1 year' );
 
-        // Set up API parameters to retrieve individual events ordered by start time
+        // API parameters
         $params = [
             'timeMin' => $timeMin->format(DateTime::RFC3339),
             'timeMax' => $timeMax->format(DateTime::RFC3339),
@@ -153,31 +170,43 @@ class NextDate {
             'maxResults' => 2500,
         ];
 
-        // Call the API to fetch events from the calendar
         $events = $service->events->listEvents( $calendar_id, $params );
-        $busy_days = [];
 
-        // Loop through each event and extract the start and end dates
+        // Instead of boolean, store count of events per day
+        $events_count_per_day = [];
+
         foreach ( $events->getItems() as $event ) {
             $start = $event->getStart();
             $end = $event->getEnd();
 
-            // Get date or extract date portion from datetime
             $start_date = $start->getDate() ?? substr($start->getDateTime(), 0, 10);
             $end_date   = $end->getDate() ?? substr($end->getDateTime(), 0, 10);
 
             $start_dt = new DateTime($start_date);
             $end_dt   = new DateTime($end_date);
 
-            // If it's an all-day event, subtract one day from the end (non-inclusive)
+            // Adjust for all-day events (end is non-inclusive)
             if ( $start->getDate() ) {
                 $end_dt->modify('-1 day');
             }
 
-            // Create a range of busy days (inclusive)
             $period = new DatePeriod($start_dt, new DateInterval('P1D'), $end_dt->modify('+1 day'));
+
             foreach ( $period as $dt ) {
-                $busy_days[ $dt->format('Y-m-d') ] = true;
+                $day_str = $dt->format('Y-m-d');
+
+                if ( ! isset( $events_count_per_day[ $day_str ] ) ) {
+                    $events_count_per_day[ $day_str ] = 0;
+                }
+                $events_count_per_day[ $day_str ]++;
+            }
+        }
+
+        // Now create $busy_days array, only marking busy if count >= events_per_day
+        $busy_days = [];
+        foreach ( $events_count_per_day as $day => $count ) {
+            if ( $count >= $this->events_per_day ) {
+                $busy_days[ $day ] = true;
             }
         }
 
@@ -186,40 +215,51 @@ class NextDate {
 
     /**
      * Finds the first date with the required number of consecutive free days.
-     * 
-     * Scans through each day starting from $start and checks for a sequence
-     * of $this->consecutive_days where none are marked as busy.
-     * 
+     * Now treats days as busy only if count threshold met in get_busy_days.
+     *
      * @since 1.0.0
      */
     private function find_consecutive_free_days( array $busy_days, DateTime $start ) {
         $cursor = clone $start;
-        $end = ( clone $start )->modify( '+1 year' );
+        $end = (clone $start)->modify('+1 year');
 
-        // Iterate day by day through the year
-        while ( $cursor < $end ) {
-            $all_free = true;
+        while ($cursor < $end) {
 
-            // Check the next N days for availability
-            for ( $i = 0; $i < $this->consecutive_days; $i++ ) {
-                $check_day = (clone $cursor)->modify("+$i days")->format('Y-m-d');
-                if ( isset($busy_days[$check_day]) ) {
-                    // At least one day is busy — break and move to next day
-                    $all_free = false;
-                    break;
-                }
+            // Skip weekend as possible start
+            if ( ! $this->include_weekends && in_array( intval( $cursor->format('N') ), [6, 7], true ) ) {
+                $cursor->modify( '+1 day' );
+                continue;
             }
 
-            // Found a sequence of free days
-            if ( $all_free ) {
+            $free_count = 0;
+            $check_date = clone $cursor;
+
+            while ( $free_count < $this->consecutive_days ) {
+
+                if ( ! $this->include_weekends && in_array( intval( $check_date->format('N') ), [6, 7], true ) ) {
+                    $check_date->modify( '+1 day' );
+                    continue;
+                }
+
+                $day_str = $check_date->format( 'Y-m-d' );
+
+                // Check if day is busy according to new logic
+                if ( isset( $busy_days[ $day_str ] ) ) {
+                    break;
+                }
+
+                $free_count++;
+                $check_date->modify('+1 day');
+            }
+
+            if ( $free_count >= $this->consecutive_days ) {
                 return $cursor;
             }
 
-            // Move to the next day and repeat
             $cursor->modify('+1 day');
         }
 
-        // No suitable window found in the given timeframe
         return null;
     }
+
 }

@@ -22,7 +22,7 @@
 			colorEvents: { type: 'boolean', default: true },
 			highlightAvailable: { type: 'boolean', default: true },
 			showPast: { type: 'boolean', default: false },
-			includeWeekends: { type: 'boolean', default: true }
+			showWeekends: { type: 'boolean', default: true }
 		},
 
 		edit: function (props) {
@@ -81,9 +81,9 @@
 							__nextHasNoMarginBottom: true,
 						}),
 						el(ToggleControl, {
-							label: __('Include Weekends', 'nextav'),
-							checked: attributes.includeWeekends,
-							onChange: (value) => setAttributes({ includeWeekends: value }),
+							label: __('Show Weekends', 'nextav'),
+							checked: attributes.showWeekends,
+							onChange: (value) => setAttributes({ showWeekends: value }),
 							__nextHasNoMarginBottom: true,
 						})
 					)

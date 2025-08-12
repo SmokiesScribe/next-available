@@ -1,5 +1,5 @@
 /* Loading Indicator Container */
-#buddyc-loading-indicator-container {
+#nextav-loading-indicator-container {
     position: fixed;
     top: 50%;
     left: 50%;
@@ -10,19 +10,19 @@
 }
 
 /* Spinner Styling */
-#buddyc-loading-indicator {
+#nextav-loading-indicator {
     margin: 0 auto; /* Center horizontally */
     margin-bottom: 10px; /* Space between spinner and message */
     border: 16px solid #f3f3f3; /* Light grey border */
     border-radius: 50%; /* Circular shape */
-    border-top: 16px solid var(--buddyclients-accent-color, #037AAD); /* Fallback color for admin area */
+    border-top: 16px solid var(--nextavlients-accent-color, #037AAD); /* Fallback color for admin area */
     width: 60px; /* Adjust size if needed */
     height: 60px; /* Adjust size if needed */
     animation: spin 2s linear infinite; /* Spinning animation */
 }
 
 /* Loading Message Styling */
-#buddyc-loading-indicator-message {
+#nextav-loading-indicator-message {
     font-size: 14px; /* Adjust font size if needed */
     color: gray; /* Adjust text color if needed */
     text-align: center;
@@ -35,7 +35,7 @@
 }
 
 /* Ensure compatibility with WordPress admin */
-body.wp-admin #buddyc-loading-indicator-container {
+body.wp-admin #nextav-loading-indicator-container {
     z-index: 99999; /* Higher z-index for admin compatibility */
     position: fixed;
     top: 50%;
@@ -44,6 +44,6 @@ body.wp-admin #buddyc-loading-indicator-container {
 }
 
 /* Spinner for WordPress admin */
-body.wp-admin #buddyc-loading-indicator {
+body.wp-admin #nextav-loading-indicator {
     border-top: 16px solid #0073aa; /* Default WordPress blue as fallback */
 }

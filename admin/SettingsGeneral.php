@@ -25,7 +25,9 @@ class SettingsGeneral {
             'free_days'             => 7,
             'date_format'           => 'F j, Y',
             'update_frequency'      => 3,
-            'date_fallback'         => __( 'Contact for availability', 'next-available' )
+            'date_fallback'         => __( 'Contact for availability', 'next-available' ),
+            'include_weekends'      => 'no',
+            'events_per_day'        => 1
         ];
     }
     
@@ -44,6 +46,20 @@ class SettingsGeneral {
                         'label' => __('Required Free Days', 'next-available'),
                         'type' => 'number',
                         'description' => __('Specify how many consecutive days must be free of scheduled events to be considered AVAILABLE.', 'next-available'),
+                    ],
+                    'include_weekends' => [
+                        'label' => __('Include Weekends', 'next-available'),
+                        'type' => 'dropdown',
+                        'options' => [
+                            'yes' => __('Yes, include weekends', 'next-available'),
+                            'no' => __('No, weekdays only', 'next-available')
+                        ],
+                        'description'   => __( 'Should weekends be included in available days?', 'next-available' )
+                    ],
+                    'events_per_day' => [
+                        'label' => __('Events Per Day', 'next-available'),
+                        'type' => 'number',
+                        'description' => __('How many events per day should be allowed? For example, if 2 events are allowed per day, you will be considered AVAILABLE if only one is scheduled.', 'next-available'),
                     ],
                     'update_frequency' => [
                         'label' => __('Update Frequency (days)', 'next-available'),

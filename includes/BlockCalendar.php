@@ -42,7 +42,7 @@ class BlockCalendar {
      *     @type    bool    $colorEvents           Whether to colorize events.
      *     @type    bool    $highlightAvailable    Whether to highlight available days.
      *     @type    bool    $showPast              Whether to show past months.
-     *     @type    bool    $includeWeekends       Whether to include weekends.
+     *     @type    bool    $showWeekends       Whether to include weekends.
      * }
      */
     public function render_block( $attributes = [] ) {
@@ -68,7 +68,7 @@ class BlockCalendar {
      *     @type    bool    $colorEvents           Whether to colorize events.
      *     @type    bool    $highlightAvailable    Whether to highlight available days.
      *     @type    bool    $showPast              Whether to show past months.
-     *     @type    bool    $includeWeekends       Whether to include weekends.
+     *     @type    bool    $showWeekends       Whether to include weekends.
      * }
      * 
      * @return   array {
@@ -80,7 +80,7 @@ class BlockCalendar {
      *     @type    bool    $color_events           Whether to colorize events.
      *     @type    bool    $highlight_available    Whether to highlight available days.
      *     @type    bool    $show_past              Whether to show past months.
-     *     @type    bool    $include_weekends       Whether to include weekends.
+     *     @type    bool    $show_weekends       Whether to include weekends.
      * }
      */
     private function build_atts( $attributes ) {
@@ -91,7 +91,7 @@ class BlockCalendar {
             'color_events'       => isset( $attributes['colorEvents'] ) ? (bool) $attributes['colorEvents'] : true,
             'highlight_available'=> isset( $attributes['highlightAvailable'] ) ? (bool) $attributes['highlightAvailable'] : true,
             'show_past'          => isset( $attributes['showPast'] ) ? (bool) $attributes['showPast'] : false,
-            'include_weekends'   => isset( $attributes['includeWeekends'] ) ? (bool) $attributes['includeWeekends'] : true,
+            'show_weekends'   => isset( $attributes['showWeekends'] ) ? (bool) $attributes['showWeekends'] : true,
         ];
     }
 }

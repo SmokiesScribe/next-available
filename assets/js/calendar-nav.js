@@ -34,17 +34,24 @@
     return date.getFullYear() + '-' + String(date.getMonth() + 1).padStart(2, '0');
   }
 
-  function nextavFetchCalendar(ym) {
+  function nextavFetchCalendar( ym ) {
+
+    // Show spinner
+    nextavLoadingIndicator( true );
+
     jQuery.ajax({
       url: calendarNavData.ajaxurl,
       method: 'POST',
       data: {
         action: 'nextav_get_calendar',
-        month: ym, // Send single Y-m string
+        month: ym,
         atts: atts,
         nonce: calendarNavData.nonce,
       },
       success: function(response) {
+        // Hide spinner
+        nextavLoadingIndicator( false );
+
         if (response.success && response.data) {
           if (calendarContainer) {
             calendarContainer.innerHTML = response.data;
@@ -53,16 +60,14 @@
           url.searchParams.set('cal_month', ym);
           window.history.replaceState(null, '', url.toString());
 
-          // Update calMonth after success
           calMonth = ym;
-
-          // Rebind event listeners to new buttons
           setupEventListeners();
         } else {
           console.error('Error fetching calendar:', response.data || 'Unknown error');
         }
       },
       error: function(jqXHR, textStatus, errorThrown) {
+        nextavLoadingIndicator( false );
         console.error('AJAX error:', textStatus, errorThrown);
       }
     });

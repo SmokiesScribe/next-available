@@ -2,7 +2,7 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   width: 100%;
   max-width: 960px;
-  margin: 2rem auto;
+  margin: auto;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06);
@@ -69,7 +69,6 @@
   overflow: hidden;
   text-overflow: ellipsis;
   z-index: 20;
-  cursor: pointer;
   box-shadow: 0 2px 5px rgba(0,0,0,0.08);
   user-select: none;
   height: 20px;
@@ -91,6 +90,7 @@
   margin: 10px;
   transition: all 0.2s ease;
   box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+  cursor: pointer;
 }
 
 .nextav-cal-nav-button:hover {
@@ -105,21 +105,32 @@
     text-decoration: none;
 }
 .nextav-day-cell.highlight-available {
-    background: linear-gradient(135deg, #fff9c4, #fff59d);
-    border: 2px solid #fbc02d;
-    border-radius: 8px;
-    box-shadow: 0 4px 6px rgba(251, 192, 45, 0.3);
-    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    background: linear-gradient(135deg, #fffde7, #fff9c4);
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(255, 243, 130, 0.5);
+    transition: background 0.4s ease, box-shadow 0.4s ease, transform 0.3s ease;
 }
 
+.nextav-day-cell.highlight-available:hover {
+    background: linear-gradient(135deg, #fff59d, #fff176);
+    box-shadow: 0 6px 12px rgba(255, 235, 59, 0.7);
+    transform: translateY(-3px);
+}
 
-.nextav-day-cell.next-available-day {
+.nextav-day-cell.highlight-next-available {
     border: 2px solid #1e88e5;
-    background: #bbdefb;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(30, 136, 229, 0.3);
+    background: linear-gradient(135deg, #bbdefb, #90caf9);
+    border-radius: 12px;
+    box-shadow: 0 6px 16px rgba(30, 136, 229, 0.4);
     position: relative;
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
 }
+
+.nextav-day-cell.highlight-next-available:hover {
+    box-shadow: 0 10px 20px rgba(30, 136, 229, 0.6);
+    transform: translateY(-4px);
+}
+
 
 .nextav-calendar-contact-button {
     background-color: #1e88e5;
@@ -145,8 +156,8 @@
     position: absolute;
     top: 5px;
     left: 35px;
-    background-color: #ff9800; /* Bright, attention-grabbing color */
-    color: #fff;
+    background-color: #ffb300; /* Bright, attention-grabbing color */
+    color: #212121;
     font-size: 11px;
     font-weight: bold;
     padding: 3px 6px;
@@ -154,7 +165,7 @@
     text-transform: uppercase;
     letter-spacing: 0.5px;
     box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-    z-index: 10;
+    z-index: 25;
     margin-right: 5px;
 }
 

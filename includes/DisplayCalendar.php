@@ -78,7 +78,7 @@ class DisplayCalendar {
      * 
      * @var bool
      */
-    private $include_weekends;
+    private $show_weekends;
 
     /**
      * The month to display.
@@ -87,6 +87,20 @@ class DisplayCalendar {
      * @var string
      */
     private $month;
+
+    /**
+     * Whether weekends are included in available days.
+     * 
+     * @var bool
+     */
+    private $include_weekends;
+
+    /**
+     * The number of events to allow per day.
+     * 
+     * @var int
+     */
+    private $events_per_day;
     
     /**
      * Constructor method.
@@ -97,6 +111,8 @@ class DisplayCalendar {
         $this->cal = new GoogleCal;
         $this->next_available = ( new NextDate )->get_date();
         $this->contact_email = $this->get_email();
+        $this->include_weekends = nextav_get_setting( 'general', 'include_weekends' ) === 'yes';
+        $this->events_per_day = nextav_get_setting( 'general', 'events_per_day' ) ?? 1;
     }
 
     /**
@@ -127,7 +143,7 @@ class DisplayCalendar {
      *     @type    bool    $color_events           Whether to colorize events.
      *     @type    bool    $highlight_available    Whether to highlight available days.
      *     @type    bool    $show_past              Whether to show past months.
-     *     @type    bool    $include_weekends       Whether to include weekends.
+     *     @type    bool    $show_weekends       Whether to include weekends.
      * }
      */
     private function extract_atts( $atts = [] ) {
@@ -137,7 +153,7 @@ class DisplayCalendar {
         $this->color_events         = filter_var( $atts['color_events'] ?? true, FILTER_VALIDATE_BOOLEAN );
         $this->highlight_available  = filter_var( $atts['highlight_available'] ?? true, FILTER_VALIDATE_BOOLEAN );
         $this->show_past            = filter_var( $atts['show_past'] ?? false, FILTER_VALIDATE_BOOLEAN );
-        $this->include_weekends     = filter_var( $atts['include_weekends'] ?? true, FILTER_VALIDATE_BOOLEAN ); // @todo not rendering events correctly
+        $this->show_weekends     = filter_var( $atts['show_weekends'] ?? true, FILTER_VALIDATE_BOOLEAN ); // @todo not rendering events correctly
         $this->month                = $this->get_display_month( $atts );
     }
 
@@ -155,7 +171,7 @@ class DisplayCalendar {
      *     @type    bool    $color_events           Whether to colorize events.
      *     @type    bool    $highlight_available    Whether to highlight available days.
      *     @type    bool    $show_past              Whether to show past months.
-     *     @type    bool    $include_weekends       Whether to include weekends.
+     *     @type    bool    $show_weekends       Whether to include weekends.
      * }
      * 
      * @return  string  The rendered calendar html.
@@ -330,7 +346,7 @@ protected function prepare_calendar_data(DateTimeImmutable $month_start, DateTim
             $day_num = (int) $day_cursor->format('j'); // day of month
 
             // Skip weekend if not included
-            if ($this->include_weekends || (!in_array((int)$day_cursor->format('w'), [0,6]))) {
+            if ($this->show_weekends || (!in_array((int)$day_cursor->format('w'), [0,6]))) {
                 if (!isset($events_per_day[$day_num])) {
                     $events_per_day[$day_num] = 0;
                 }
@@ -341,7 +357,7 @@ protected function prepare_calendar_data(DateTimeImmutable $month_start, DateTim
         }
 
         // --- Existing segment logic remains ---
-        if ($this->include_weekends) {
+        if ($this->show_weekends) {
             $start_index = ((int) $start->format('j')) - 1 + $start_day;
             $end_index   = ((int) $end->format('j')) - 1 + $start_day;
 
@@ -401,11 +417,27 @@ protected function prepare_calendar_data(DateTimeImmutable $month_start, DateTim
 
     $event_segments = $this->assign_event_stacks_per_day($event_segments, $events_per_day);
 
+    // Determine available days (days with fewer events than threshold)
+    $available_days = [];
+    for ($day = 1; $day <= $days_in_month; $day++) {
+        // Skip weekends if weekends are not shown
+        $weekday = (int) (new DateTime($month_start->format('Y-m-') . str_pad($day, 2, '0', STR_PAD_LEFT)))->format('w');
+        if ( !$this->show_weekends && ($weekday === 0 || $weekday === 6) ) {
+            continue;
+        }
+
+        // Check if the event count for the day is less than events_per_day (or no events)
+        if ( empty($events_per_day[$day]) || $events_per_day[$day] < $this->events_per_day ) {
+            $available_days[] = $day;
+        }
+    }
+
     return [
         'start_day'      => $start_day,
         'days_in_month'  => $days_in_month,
         'event_segments' => $event_segments,
         'events_per_day' => $events_per_day,
+        'available_days' => $available_days,
     ];
 }
 
@@ -445,7 +477,7 @@ private function weekday_index_from_date(DateTimeImmutable $month_start, DateTim
  * Assign vertical stacking index to overlapping events to avoid overlap.
  *
  * @param array $event_segments Each with keys 'start_cell' and 'span_days'
- * @param bool $include_weekends
+ * @param bool $show_weekends
  * @return array Event segments with added 'stack' index
  */
 private function assign_event_stacks_per_day(array $event_segments, array $events_per_day): array {
@@ -500,8 +532,8 @@ private function assign_event_stacks_per_day(array $event_segments, array $event
         $month_label = $current_month->format( 'F Y' );
         $show_prev = $this->show_past || $current_month > new DateTime( date( 'Y-m-01' ) );
 
-        // Decide days and column count based on include_weekends
-        $days = $this->include_weekends ? ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'] : ['Mon','Tue','Wed','Thu','Fri'];
+        // Decide days and column count based on show_weekends
+        $days = $this->show_weekends ? ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'] : ['Mon','Tue','Wed','Thu','Fri'];
         $cols = count( $days );
 
         // Encode atts
@@ -538,7 +570,7 @@ private function assign_event_stacks_per_day(array $event_segments, array $event
 
                 // If excluding weekends, adjust the number of empty cells before month start
                 // Count how many weekend days fall before the 1st to skip them
-                if (!$this->include_weekends) {
+                if (!$this->show_weekends) {
                     // Calculate how many weekend days to skip before first weekday
                     // We'll count empty cells only for weekdays (Mon=1..Fri=5)
                     $empty_cells = 0;
@@ -561,13 +593,25 @@ private function assign_event_stacks_per_day(array $event_segments, array $event
                     $weekday = (int)(new DateTime($date_str))->format('w');
 
                     // Skip weekend days if weekends not included
-                    if (!$this->include_weekends && ($weekday === 0 || $weekday === 6)) {
+                    if (!$this->show_weekends && ($weekday === 0 || $weekday === 6)) {
                         continue;
                     }
 
                     // Check if this day matches next_available date
                     $is_next_available = $date_str === $this->next_available;
                     $highlight_class = $is_next_available ? ' highlight-available' : '';
+
+                    // Check if available day
+                    $is_available = $this->highlight_available && in_array( $day, $available_days );
+                    if ( ! $this->include_weekends && ($weekday === 0 || $weekday === 6 ) ) {
+                        $is_available = false;
+                    }
+
+                    // Add highlighted classes
+                    $highlight_class = $is_available ? ' highlight-available' : '';
+                    if ( $is_next_available ) {
+                        $highlight_class .= ' highlight-next-available';
+                    }
 
                     echo '<div class="nextav-day-cell' . $highlight_class . '" data-day="'. $day .'" style="position: relative;">';
                     echo '<div class="nextav-date-number">' . $day . '</div>';
@@ -590,11 +634,11 @@ private function assign_event_stacks_per_day(array $event_segments, array $event
                 $span_days  = $seg['span_days'];
                 $summary    = htmlspecialchars($seg['summary']);
 
-                if ($this->include_weekends) {
+                if ($this->show_weekends) {
                     $grid_column = ($start_cell % 7) + 1;
                     $grid_row    = floor($start_cell / 7) + 2;
                     $row_height  = 121;
-                    $cell_width_percent = $this->include_weekends ? (100 / 7) : (100 / 5);
+                    $cell_width_percent = $this->show_weekends ? (100 / 7) : (100 / 5);
                     $width = ($span_days * $cell_width_percent) - 2; // subtract 1% for margin/padding buffer
                     $left = ($grid_column - 1) * $cell_width_percent;
 
@@ -612,7 +656,7 @@ private function assign_event_stacks_per_day(array $event_segments, array $event
                     $grid_column = $day_of_week + 1;
                     $grid_row    = $week_number + 2;
                     $row_height  = 121;
-                    $cell_width_percent = $this->include_weekends ? (100 / 7) : (100 / 5);
+                    $cell_width_percent = $this->show_weekends ? (100 / 7) : (100 / 5);
                     $width = ($span_days * $cell_width_percent) - 2; // subtract 1% for margin/padding buffer
                     $left = ($grid_column - 1) * $cell_width_percent;
 
